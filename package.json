@@ -1,0 +1,11 @@
+{
+    "name": "kimi-agent-deployment",
+    "version": "1.0.0",
+    "description": "Static deployment for Kimi Agent",
+    "scripts": {
+        "dev": "npx serve ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

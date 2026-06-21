@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights | Fixolutions Blog</title>
+  <meta name="description"
+    content="Practical strategies, industry trends, and expert insights to help you run a smarter after-sales service organization." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #cdf78b;
+      --primary-rgb: 205, 247, 139;
+      --bg-dark: #070c14;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --text-2: rgba(255, 255, 255, 0.6);
+      --font-head: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .blog-header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(7, 12, 20, 0.85);
+      backdrop-filter: blur(14px);
+      z-index: 10;
+    }
+
+    .blog-header .container {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    .back-link {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-2);
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    /* Hero */
+    .blog-hero {
+      padding: 80px 0 50px;
+      text-align: center;
+    }
+
+    .blog-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .blog-hero h1 span {
+      color: var(--primary);
+    }
+
+    .blog-hero p {
+      color: var(--text-2);
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Grid */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-bottom: 100px;
+    }
+
+    .post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 230px;
+    }
+
+    .post-card:hover {
+      border-color: rgba(var(--primary-rgb), 0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .post-meta {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .post-card h2 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .post-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--primary);
+    }
+
+    .post-link svg {
+      transition: transform 0.2s ease;
+    }
+
+    .post-card:hover .post-link svg {
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    .blog-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--text-2);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="blog-header">
+    <div class="container">
+      <a href="https://getfixolutions.com" class="logo">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 6 L13 12" stroke="#c8e85a" stroke-width="1.5" stroke-opacity="0.6" />
+          <path d="M18 5 L13 12" stroke="#c8e85a" stroke-width="1.5" stroke-opacity="0.6" />
+          <path d="M13 12 L9 19" stroke="#c8e85a" stroke-width="1.5" stroke-opacity="0.6" />
+          <circle cx="6" cy="6" r="3.5" fill="#070c14" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="6" cy="6" r="1.5" fill="var(--primary)" />
+          <circle cx="18" cy="5" r="3" fill="var(--primary)" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="18" cy="5" r="1" fill="#070c14" />
+          <circle cx="13" cy="12" r="2" fill="#070c14" stroke="#ffffff" stroke-width="1.5" />
+          <circle cx="13" cy="12" r="0.8" fill="var(--primary)" />
+          <circle cx="9" cy="19" r="4.5" fill="var(--primary)" stroke="#ffffff" stroke-width="1.5" />
+          <path d="M7.5 19 L8.5 20 L10.5 17.5" stroke="#070c14" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Fixolutions
+      </a>
+      <a href="https://getfixolutions.com" class="back-link">← Back to main site</a>
+    </div>
+  </header>
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1><span>Insights</span> for Service Leaders</h1>
+      <p>Practical strategies, industry trends, and expert insights to help you run a smarter, more efficient
+        after-sales service organization.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="posts-grid">
+
+      <a class="post-card" href="/posts/reduce-technician-idle-time.html">
+        <div class="post-meta">June 22, 2026 &nbsp;•&nbsp; Service Operators</div>
+        <h2>5 Ways to Reduce Technician Idle Time and Increase Productivity</h2>
+        <span class="post-link">Read article
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="post-card" href="/posts/reduce-technician-idle-time.html">
+        <div class="post-meta">June 22, 2026</div>
+        <h2>Best Practices for Faster Resolutions</h2>
+        <span class="post-link">Read article
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="post-card" href="/posts/reduce-technician-idle-time.html">
+        <div class="post-meta">June 22, 2026</div>
+        <h2>How to Increase AMC Renewals in 2026</h2>
+        <span class="post-link">Read article
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </span>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <div class="container">© 2026 Fixolutions Systems Private Limited. All rights reserved.</div>
+  </footer>
+</body>
+
+</html>
