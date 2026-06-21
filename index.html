@@ -1224,6 +1224,93 @@
       filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.15));
     }
 
+    /* New layout styles */
+    .product-card-potential-large {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 48px;
+      padding: 48px;
+      margin-bottom: 32px;
+      min-height: 520px;
+    }
+
+    .product-card-potential-large .product-desktop-wrapper {
+      width: 50% !important;
+      max-width: 100% !important;
+    }
+
+    .product-card-potential-large .product-desktop-img {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: auto;
+    }
+
+    .product-card-potential-large .product-info {
+      width: 50% !important;
+      flex-grow: 1;
+    }
+
+    .product-card-potential-large .product-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      margin-bottom: 24px;
+    }
+
+    .product-card-potential-large .product-name {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .product-card-potential-large .product-tagline {
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .product-card-potential-large:hover .product-desktop-img {
+      transform: translateY(-8px) scale(1.02) rotateX(2deg);
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.2));
+    }
+
+    .kinetic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .product-card-kinetic {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 28px;
+      padding: 32px 24px;
+      min-height: 460px;
+    }
+
+    .product-card-kinetic .product-phone-wrapper {
+      width: 38% !important;
+      max-width: 100% !important;
+      margin-top: 0 !important;
+    }
+
+    .product-card-kinetic .product-phone-img {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: auto;
+    }
+
+    .product-card-kinetic .product-info {
+      width: 62% !important;
+    }
+
+    .product-card-kinetic:hover .product-phone-img {
+      transform: translateY(-8px) scale(1.04) rotateY(-4deg);
+      filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.2));
+    }
+
     /* Vertical Card Modifier (For Potential / Desktop view) */
     .product-card-vertical {
       flex-direction: column !important;
@@ -2973,16 +3060,19 @@
         margin-top: -16px;
       }
 
-      .product-grid {
+      .product-grid,
+      .kinetic-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 32px;
-        max-width: 600px;
-        margin: 0 auto;
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
       }
 
       .product-card,
-      .product-card-vertical {
+      .product-card-vertical,
+      .product-card-potential-large,
+      .product-card-kinetic {
         flex-direction: column !important;
         align-items: center !important;
         text-align: center;
@@ -2994,13 +3084,22 @@
       .product-phone-wrapper,
       .product-desktop-wrapper {
         width: 100% !important;
-        max-width: 320px;
+        max-width: 320px !important;
+      }
+
+      .product-card-potential-large .product-desktop-wrapper {
+        max-width: 480px !important;
       }
 
       .product-info {
         width: 100% !important;
         align-items: center;
         text-align: center;
+      }
+
+      .product-card-potential-large .product-features {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
       }
 
       .product-features li {
@@ -3637,9 +3736,40 @@
       <p class="workflow-subtitle">Purpose-built apps for home appliances and consumer electronics after-sales
         teams.</p>
 
-      <div class="product-grid">
+      <!-- Separate Full-Width Potential Card -->
+      <div class="product-card product-card-potential-large" data-aos>
+        <div class="product-desktop-wrapper">
+          <img src="Potential.png" alt="Potential Enterprise Intelligence Platform Mockup"
+            class="product-desktop-img" />
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Potential™</h3>
+          <p class="product-tagline">Enterprise Intelligence Platform</p>
+          <ul class="product-features">
+            <li><span><strong>Seamless integration with Oracle, SAP, Microsoft &amp; Salesforce</strong></span></li>
+            <li><span><strong>Enterprise-grade security, totally secure</strong></span></li>
+            <li><span><strong>SEVA™ customer experience intelligence</strong></span></li>
+            <li><span><strong>An AI experience you won't want to work without</strong></span></li>
+            <li><span><strong>Data presentation that directly impacts ROI</strong></span></li>
+            <li><span><strong>Role-based views, tailored from branch managers to service heads</strong></span></li>
+            <li><span><strong>Effortless to use, no technical skills needed</strong></span></li>
+            <li><span><strong>Faster root-cause analysis</strong></span></li>
+            <li><span><strong>See your entire system at a glance</strong></span></li>
+            <li><span><strong>End-to-end spare-parts visibility</strong></span></li>
+            <li><span><strong>Built-in quality assurance tools</strong></span></li>
+          </ul>
+          <p class="product-promise">To your consumers, from you, through us.</p>
+          <a href="#contact" class="product-link">Explore Potential →</a>
+        </div>
+      </div>
+
+      <!-- Two-Column Grid for Kinetic Cards -->
+      <div class="kinetic-grid">
         <!-- Card 1: Kinetic Consumer -->
-        <div class="product-card product-card-vertical" data-aos>
+        <div class="product-card product-card-kinetic" data-aos>
+          <div class="product-phone-wrapper">
+            <img src="Kinetic image 1.png" alt="Kinetic Consumer App Phone Mockup" class="product-phone-img" />
+          </div>
           <div class="product-info">
             <h3 class="product-name">Kinetic Consumer</h3>
             <p class="product-tagline">Consumer Experience App</p>
@@ -3649,42 +3779,15 @@
               <li><span><strong>Replacement intelligence</strong></span></li>
               <li><span><strong>Lifecycle signals</strong></span></li>
             </ul>
+            <a href="#contact" class="product-link">Learn about Consumer →</a>
           </div>
+        </div>
+
+        <!-- Card 2: Kinetic Technician -->
+        <div class="product-card product-card-kinetic" data-aos>
           <div class="product-phone-wrapper">
-            <img src="Kinetic image 1.png" alt="Kinetic Consumer App Phone Mockup" class="product-phone-img" />
+            <img src="kinetic_phone_clean.png" alt="Kinetic Technician App Phone Mockup" class="product-phone-img" />
           </div>
-          <a href="#contact" class="product-link">Learn about Consumer →</a>
-        </div>
-
-        <!-- Card 2: Potential™ -->
-        <div class="product-card product-card-vertical product-card-potential" data-aos>
-          <div class="product-desktop-wrapper">
-            <img src="Potential.png" alt="Potential Enterprise Intelligence Platform Mockup"
-              class="product-desktop-img" />
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">Potential™</h3>
-            <p class="product-tagline">Enterprise Intelligence Platform</p>
-            <ul class="product-features">
-              <li><span><strong>Seamless integration with Oracle, SAP, Microsoft &amp; Salesforce</strong></span></li>
-              <li><span><strong>Enterprise-grade security, totally secure</strong></span></li>
-              <li><span><strong>SEVA™ customer experience intelligence</strong></span></li>
-              <li><span><strong>An AI experience you won't want to work without</strong></span></li>
-              <li><span><strong>Data presentation that directly impacts ROI</strong></span></li>
-              <li><span><strong>Role-based views, tailored from branch managers to service heads</strong></span></li>
-              <li><span><strong>Effortless to use, no technical skills needed</strong></span></li>
-              <li><span><strong>Faster root-cause analysis</strong></span></li>
-              <li><span><strong>See your entire system at a glance</strong></span></li>
-              <li><span><strong>End-to-end spare-parts visibility</strong></span></li>
-              <li><span><strong>Built-in quality assurance tools</strong></span></li>
-            </ul>
-            <p class="product-promise">To your consumers, from you, through us.</p>
-            <a href="#contact" class="product-link">Explore Potential →</a>
-          </div>
-        </div>
-
-        <!-- Card 3: Kinetic Technician -->
-        <div class="product-card product-card-vertical" data-aos>
           <div class="product-info">
             <h3 class="product-name">Kinetic Technician</h3>
             <p class="product-tagline">Technician & Service App</p>
@@ -3695,11 +3798,8 @@
               <li><span><strong>Works in low-data and weak-signal areas</strong></span></li>
               <li><span><strong>Simple repair guides, easy to find and follow</strong></span></li>
             </ul>
+            <a href="#contact" class="product-link">Learn Kinetic Tech →</a>
           </div>
-          <div class="product-phone-wrapper">
-            <img src="kinetic_phone_clean.png" alt="Kinetic Technician App Phone Mockup" class="product-phone-img" />
-          </div>
-          <a href="#contact" class="product-link">Learn Kinetic Tech →</a>
         </div>
       </div>
     </div>
