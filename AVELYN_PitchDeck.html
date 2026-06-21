@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVELYN — Investor Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-bright: #FFE08A;
+    --gold-dim: #7A5E2A;
+    --dark: #080707;
+    --dark-2: #0F0E0C;
+    --dark-3: #181510;
+    --dark-4: #221E15;
+    --dark-5: #2D2820;
+    --text: #F0EAD6;
+    --text-muted: #9C8E72;
+    --text-dim: #5C5040;
+    --white: #FDFAF3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ─── SLIDES ─── */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateX(40px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+  }
+
+  .slide.exit {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  /* ─── BACKGROUNDS ─── */
+  .bg-base {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 0%, rgba(201,168,76,0.05) 0%, transparent 50%),
+      var(--dark-2);
+  }
+
+  .bg-deep {
+    background:
+      radial-gradient(ellipse 100% 80% at 50% 100%, rgba(201,168,76,0.12) 0%, transparent 55%),
+      var(--dark);
+  }
+
+  .bg-accent {
+    background:
+      radial-gradient(ellipse 70% 70% at 20% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 50%),
+      var(--dark-3);
+  }
+
+  /* ─── NOISE GRAIN OVERLAY ─── */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .slide > * { position: relative; z-index: 1; }
+
+  /* ─── GOLD LINE ORNAMENT ─── */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ornament-line {
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .ornament-line.right {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .ornament-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .headline .gold { color: var(--gold-light); font-style: italic; }
+  .headline .accent { color: var(--gold); }
+
+  h1.headline { font-size: clamp(52px, 7vw, 88px); }
+  h2.headline { font-size: clamp(38px, 5vw, 64px); }
+  h3.headline { font-size: clamp(28px, 3.5vw, 48px); }
+
+  .subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, 1.4vw, 17px);
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 680px;
+  }
+
+  .subtext strong { color: var(--text); font-weight: 500; }
+  .subtext .gold { color: var(--gold-light); }
+
+  /* ─── GOLD DIVIDER ─── */
+  .gold-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+    margin: 28px 0;
+  }
+
+  .gold-line.wide { width: 160px; }
+  .gold-line.center { margin: 28px auto; }
+
+  /* ─── STAT BLOCKS ─── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .stat-block {
+    border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(201,168,76,0.03);
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .stat-block::before, .stat-block::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+
+  .stat-block::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+  .stat-block::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+  .stat-block:hover { border-color: rgba(201,168,76,0.4); }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  /* ─── FEATURE CARDS ─── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .feature-card {
+    border: 1px solid rgba(201,168,76,0.12);
+    background: linear-gradient(135deg, rgba(201,168,76,0.04), rgba(0,0,0,0.2));
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .feature-card:hover::after { opacity: 1; }
+
+  .feature-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .feature-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── REVENUE STRIPS ─── */
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .revenue-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 22px;
+    border: 1px solid rgba(201,168,76,0.1);
+    background: rgba(255,255,255,0.01);
+    transition: all 0.3s;
+  }
+
+  .revenue-item:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .rev-badge {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    min-width: 44px;
+    line-height: 1;
+  }
+
+  .rev-content .rev-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+  }
+
+  .rev-content .rev-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ─── TWIN SHOWCASE (Slide 5) ─── */
+  .twin-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    width: 100%;
+    max-width: 1000px;
+    align-items: center;
+  }
+
+  .twin-visual {
+    position: relative;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-frame {
+    width: 200px;
+    height: 300px;
+    border: 1px solid rgba(201,168,76,0.3);
+    position: relative;
+    background: linear-gradient(160deg, rgba(201,168,76,0.06), rgba(0,0,0,0.3));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+
+  .avatar-frame::before, .avatar-frame::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .avatar-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .avatar-frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .avatar-silhouette {
+    width: 90px;
+    height: 220px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* SVG human silhouette */
+  .avatar-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 30%, rgba(201,168,76,0.08), transparent);
+  }
+
+  .data-tags {
+    position: absolute;
+    left: -110px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .data-tag {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 5px 10px;
+    font-size: 10px;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .data-tag::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .scan-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    animation: scanMove 3s ease-in-out infinite;
+    top: 20%;
+  }
+
+  @keyframes scanMove {
+    0%, 100% { top: 20%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    50% { top: 80%; }
+  }
+
+  /* ─── MOAT ITEMS ─── */
+  .moat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .moat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 24px;
+    border-left: 2px solid rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.02);
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .moat-item:hover {
+    border-left-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+    padding-left: 30px;
+  }
+
+  .moat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold-dim);
+    min-width: 40px;
+  }
+
+  .moat-text .moat-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+
+  .moat-text .moat-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+  }
+
+  /* ─── CREATOR SECTION ─── */
+  .creator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    max-width: 960px;
+    align-items: center;
+  }
+
+  .creator-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid rgba(201,168,76,0.1);
+    background: rgba(0,0,0,0.2);
+    position: relative;
+  }
+
+  .flow-step::after {
+    content: '↓';
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-dim);
+    font-size: 12px;
+    z-index: 2;
+  }
+
+  .flow-step:last-child::after { display: none; }
+
+  .flow-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--gold);
+    min-width: 32px;
+  }
+
+  .flow-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .flow-text strong { color: var(--text); }
+
+  /* ─── MARKET VISUAL ─── */
+  .market-rings {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring {
+    position: absolute;
+    border: 1px solid;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring-1 {
+    width: 100%; height: 100%;
+    border-color: rgba(201,168,76,0.12);
+  }
+  .ring-2 {
+    width: 70%; height: 70%;
+    border-color: rgba(201,168,76,0.2);
+  }
+  .ring-3 {
+    width: 40%; height: 40%;
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .ring-label {
+    position: absolute;
+    text-align: center;
+  }
+
+  .ring-label.outer { top: -30px; left: 50%; transform: translateX(-50%); }
+  .ring-label.middle { top: 10%; left: 50%; transform: translateX(-50%); }
+
+  .ring-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .ring-sublabel {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .ring-center-text {
+    text-align: center;
+    z-index: 2;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    background: rgba(8,7,7,0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 12px 24px;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-btn:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  .nav-counter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text-muted);
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .nav-counter span { color: var(--gold); }
+
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .nav-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .nav-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+    width: 16px;
+    border-radius: 2px;
+  }
+
+  /* ─── SLIDE NUMBER ─── */
+  .slide-num {
+    position: fixed;
+    top: 36px;
+    right: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    z-index: 100;
+  }
+
+  /* ─── LOGO ─── */
+  .logo-mark {
+    position: fixed;
+    top: 32px;
+    left: 48px;
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    z-index: 100;
+  }
+
+  /* ─── COLUMN LAYOUT ─── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    width: 100%;
+    max-width: 1000px;
+    align-items: start;
+  }
+
+  /* ─── VISION TIMELINE ─── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 28px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    align-items: flex-start;
+  }
+
+  .timeline-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    min-width: 70px;
+    line-height: 1.2;
+  }
+
+  .timeline-content .tl-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .timeline-content .tl-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── PROBLEM SLIDE ─── */
+  .problem-blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .problem-block {
+    padding: 24px;
+    border: 1px solid rgba(180,60,60,0.15);
+    background: rgba(180,60,60,0.03);
+    position: relative;
+  }
+
+  .problem-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, #7A1C1C, #C0392B, #7A1C1C);
+  }
+
+  .problem-icon {
+    font-size: 20px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .problem-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #C0392B;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .problem-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(192,57,43,0.7);
+    margin-bottom: 10px;
+  }
+
+  .problem-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── COVER SLIDE ─── */
+  .cover-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cover-logo {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    letter-spacing: 0.4em;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-light) 40%, var(--gold-bright) 60%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.3));
+  }
+
+  .cover-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 48px;
+  }
+
+  .cover-description {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.8;
+    text-align: center;
+  }
+
+  .gold-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 10px 24px;
+    margin-top: 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+  }
+
+  /* ─── DECORATIVE CORNER ─── */
+  .corner-ornament {
+    position: absolute;
+    width: 80px; height: 80px;
+    pointer-events: none;
+  }
+
+  .corner-ornament.tl { top: 24px; left: 24px; border-top: 1px solid rgba(201,168,76,0.2); border-left: 1px solid rgba(201,168,76,0.2); }
+  .corner-ornament.br { bottom: 24px; right: 24px; border-bottom: 1px solid rgba(201,168,76,0.2); border-right: 1px solid rgba(201,168,76,0.2); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(201,168,76,0.3); }
+    50% { box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+  }
+
+  .slide.active .animate-1 { animation: fadeUp 0.6s 0.1s both ease-out; }
+  .slide.active .animate-2 { animation: fadeUp 0.6s 0.25s both ease-out; }
+  .slide.active .animate-3 { animation: fadeUp 0.6s 0.4s both ease-out; }
+  .slide.active .animate-4 { animation: fadeUp 0.6s 0.55s both ease-out; }
+  .slide.active .animate-5 { animation: fadeUp 0.6s 0.7s both ease-out; }
+
+  /* ─── HORIZONTAL RULE ─── */
+  .h-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+    margin: 16px 0;
+  }
+
+  /* ─── FULL WIDTH LAYOUTS ─── */
+  .slide-content {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .slide-content.centered {
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Slide 12 - ask */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 8px;
+  }
+
+  .ask-item {
+    padding: 28px 24px;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.04);
+    text-align: center;
+  }
+
+  .ask-item .ask-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .ask-item .ask-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .ask-item .ask-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 20px 28px;
+    background: rgba(201,168,76,0.03);
+    max-width: 700px;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .quote-source {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-top: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .slide { padding: 40px 30px; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .creator-grid { grid-template-columns: 1fr; }
+    .revenue-grid { grid-template-columns: 1fr; }
+    .problem-blocks { grid-template-columns: 1fr; }
+    .ask-grid { grid-template-columns: 1fr; }
+    .logo-mark { display: none; }
+  }
+
+  /* Keyboard hint */
+  .key-hint {
+    position: fixed;
+    top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    z-index: 100;
+    font-family: 'Cinzel', serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-mark">AVELYN</div>
+<div class="slide-num" id="slideNum">01 / 13</div>
+<div class="key-hint">← → ARROW KEYS OR CLICK BUTTONS</div>
+
+<div class="deck" id="deck">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 1 — COVER -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-deep active" id="slide-1">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+
+    <div class="cover-center">
+      <div class="ornament animate-1">
+        <div class="ornament-line"></div>
+        <div class="ornament-dot"></div>
+        <div class="ornament-line right"></div>
+      </div>
+      <div class="cover-logo animate-2">AVELYN</div>
+      <div class="cover-tagline animate-3">The Digital Identity & Commerce Operating System for Fashion</div>
+      <div class="h-rule animate-3"></div>
+      <p class="cover-description animate-4">
+        We are not building a try-on app.<br>
+        We are building the <strong>intelligence layer</strong> that sits between every person on earth and everything they will ever wear.
+      </p>
+      <div class="gold-badge animate-5">
+        <span>INVESTOR DECK</span>
+        <span style="width:1px;height:12px;background:rgba(201,168,76,0.3)"></span>
+        <span>CONFIDENTIAL</span>
+        <span style="width:1px;height:12px;background:rgba(201,168,76,0.3)"></span>
+        <span>APRIL 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 2 — THE PROBLEM -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-base" id="slide-2">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">The Problem</div>
+      <h2 class="headline animate-2">Fashion Commerce Is <span class="gold">Fundamentally Broken.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="problem-blocks animate-3">
+        <div class="problem-block">
+          <span class="problem-icon">📦</span>
+          <div class="problem-stat">35%</div>
+          <div class="problem-label">Return Rate — Online Fashion</div>
+          <p class="problem-text">Billions lost annually in reverse logistics, restocking, landfill. Every returned item costs brands $15–25 in handling alone.</p>
+        </div>
+        <div class="problem-block">
+          <span class="problem-icon">🛒</span>
+          <div class="problem-stat">97%</div>
+          <div class="problem-label">Traffic That Leaves Without Buying</div>
+          <p class="problem-text">Average fashion e-commerce conversion is 1–3%. 97% of visitors abandon. Sizing doubt and visualization failure are the #1 cause.</p>
+        </div>
+        <div class="problem-block">
+          <span class="problem-icon">🪞</span>
+          <div class="problem-stat">60%</div>
+          <div class="problem-label">Cart Abandonment Due to Fit Fear</div>
+          <p class="problem-text">People don't buy because they can't see themselves in the product. The model is 5'11". They are 5'4". The gap is fatal to conversion.</p>
+        </div>
+      </div>
+      <div class="animate-4" style="margin-top:24px">
+        <div class="quote-block">
+          <div class="quote-text">"Fashion commerce has persisted for thirty years with the same core failure: you cannot see how it looks on <em>you</em> before you buy."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 3 — THE MARKET TIMING -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-accent" id="slide-3">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Why Now</div>
+      <h2 class="headline animate-2">Five Technologies Just <span class="gold">Converged.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="two-col animate-3">
+        <div>
+          <div class="moat-list">
+            <div class="moat-item">
+              <div class="moat-num">01</div>
+              <div class="moat-text">
+                <div class="moat-title">Diffusion Models</div>
+                <div class="moat-desc">What took a 3D studio 3 weeks now takes seconds. Photorealistic garment rendering on any body — finally possible.</div>
+              </div>
+            </div>
+            <div class="moat-item">
+              <div class="moat-num">02</div>
+              <div class="moat-text">
+                <div class="moat-title">Body Mesh Estimation</div>
+                <div class="moat-desc">SMPL-X, MediaPipe, HMR2.0 — accurate 3D body geometry from two photos. The scanning hardware is already in everyone's pocket.</div>
+              </div>
+            </div>
+            <div class="moat-item">
+              <div class="moat-num">03</div>
+              <div class="moat-text">
+                <div class="moat-title">Multimodal LLMs</div>
+                <div class="moat-desc">AI that understands style, culture, occasion, taste, body, budget — simultaneously. The personal stylist is now software.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="moat-list">
+            <div class="moat-item">
+              <div class="moat-num">04</div>
+              <div class="moat-text">
+                <div class="moat-title">Smartphone Cameras</div>
+                <div class="moat-desc">LiDAR, depth sensors, 48MP+. The sensor hardware needed for body scanning already exists in 1.3 billion pockets. Zero hardware barrier.</div>
+              </div>
+            </div>
+            <div class="moat-item">
+              <div class="moat-num">05</div>
+              <div class="moat-text">
+                <div class="moat-title">Cultural Readiness</div>
+                <div class="moat-desc">Gen Z lives inside avatars — Roblox, Fortnite, Bitmoji. The psychological barrier to digital self-representation is gone.</div>
+              </div>
+            </div>
+            <div class="moat-item" style="border-left-color:rgba(201,168,76,0.6); background:rgba(201,168,76,0.05)">
+              <div class="moat-num" style="color:var(--gold)">⚡</div>
+              <div class="moat-text">
+                <div class="moat-title" style="color:var(--gold-bright)">The Window Is Open Now</div>
+                <div class="moat-desc">In 18–24 months, these models are commoditized. The moat is being built <strong style="color:var(--text)">today</strong> — in data, partnerships, and user trust.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 4 — THE SOLUTION -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-deep" id="slide-4">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content centered">
+      <div class="eyebrow animate-1">The Solution</div>
+      <h2 class="headline animate-2" style="text-align:center">
+        Introducing <span class="gold">AVELYN</span>
+      </h2>
+      <div class="gold-line center animate-2"></div>
+      <p class="subtext animate-3" style="text-align:center;max-width:720px">
+        A <strong>Digital Identity & Commerce Operating System</strong> for fashion — powered by AI, built on your body data, and designed to make every person on earth feel <span class="gold">seen, understood, and confident</span> in how they dress.
+      </p>
+      <div class="animate-4" style="margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;max-width:900px;">
+        <div style="text-align:center;padding:20px 12px;border:1px solid rgba(201,168,76,0.15)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em">FOR CONSUMERS</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Your AI fashion twin. Your personal stylist. Your digital closet.</div>
+        </div>
+        <div style="text-align:center;padding:20px 12px;border:1px solid rgba(201,168,76,0.15)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em">FOR BRANDS</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Reduce returns. Double conversions. Own fit intelligence.</div>
+        </div>
+        <div style="text-align:center;padding:20px 12px;border:1px solid rgba(201,168,76,0.15)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em">FOR CREATORS</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Intelligent storefronts that sell to bodies unlike yours.</div>
+        </div>
+        <div style="text-align:center;padding:20px 12px;border:1px solid rgba(201,168,76,0.15)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em">FOR INVESTORS</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.5">A platform with compounding data moats and multiple revenue vectors.</div>
+        </div>
+      </div>
+      <div class="animate-5" style="margin-top:32px">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,22px);font-style:italic;color:var(--text-muted);text-align:center">
+          "Think what Spotify did to music taste. AVELYN does that for fashion identity."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 5 — THE DIGITAL TWIN -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-base" id="slide-5">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Core Innovation</div>
+      <h2 class="headline animate-2">Your <span class="gold">Digital Twin.</span> Not a Cartoon. <em>You.</em></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="twin-showcase animate-3">
+        <div>
+          <p class="subtext" style="margin-bottom:24px">
+            A user uploads <strong>2–4 photographs</strong>. That is all. AVELYN's AI stack does the rest.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px">
+            <div style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border:1px solid rgba(201,168,76,0.1);background:rgba(201,168,76,0.02)">
+              <span style="color:var(--gold);font-size:16px;min-width:22px">◈</span>
+              <div>
+                <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:4px">BODY GEOMETRY</div>
+                <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Neural body mesh estimates your exact proportions — shoulder width, waist, hip, torso length — with centimetre-level precision.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border:1px solid rgba(201,168,76,0.1);background:rgba(201,168,76,0.02)">
+              <span style="color:var(--gold);font-size:16px;min-width:22px">◈</span>
+              <div>
+                <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:4px">FACIAL IDENTITY</div>
+                <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Face shape, skin tone across the full human spectrum, features — preserved with identity-locked generation. It is identifiably <em>you</em>.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border:1px solid rgba(201,168,76,0.1);background:rgba(201,168,76,0.02)">
+              <span style="color:var(--gold);font-size:16px;min-width:22px">◈</span>
+              <div>
+                <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:4px">PREMIUM RENDER QUALITY</div>
+                <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Not a cartoon. Not uncanny valley. The quality sits between photorealism and idealization — like seeing yourself in the best light you have ever been seen.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border:1px solid rgba(201,168,76,0.1);background:rgba(201,168,76,0.02)">
+              <span style="color:var(--gold);font-size:16px;min-width:22px">◈</span>
+              <div>
+                <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:4px">EMOTIONAL IMPACT</div>
+                <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Seeing yourself wear something collapses the cognitive gap between "that looks good" and "I will buy that." Purchase confidence transforms.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="twin-visual">
+          <div class="scan-line"></div>
+          <div class="avatar-glow"></div>
+          <div class="data-tags">
+            <div class="data-tag">Height: 5'7"</div>
+            <div class="data-tag">Skin Tone: Mapped</div>
+            <div class="data-tag">Body Mesh: ✓</div>
+            <div class="data-tag">Face ID: Locked</div>
+            <div class="data-tag">Taste: Learning</div>
+          </div>
+          <div class="avatar-frame">
+            <svg class="avatar-silhouette" viewBox="0 0 90 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Head -->
+              <ellipse cx="45" cy="22" rx="14" ry="18" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+              <!-- Neck -->
+              <rect x="40" y="38" width="10" height="10" rx="2" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+              <!-- Torso -->
+              <path d="M22 48 Q18 55 16 80 L18 130 L28 130 L28 90 L62 90 L62 130 L72 130 L74 80 Q72 55 68 48 Q57 44 45 43 Q33 44 22 48Z" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+              <!-- Left arm -->
+              <path d="M22 50 Q10 65 8 100 L14 102 Q16 72 24 56Z" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+              <!-- Right arm -->
+              <path d="M68 50 Q80 65 82 100 L76 102 Q74 72 66 56Z" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+              <!-- Left leg -->
+              <path d="M28 128 L24 200 L36 202 L40 145 L45 145 L49 202 L54 200 L62 128Z" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+              <!-- Grid overlay -->
+              <line x1="45" y1="0" x2="45" y2="220" stroke="rgba(201,168,76,0.1)" stroke-width="0.3" stroke-dasharray="2,4"/>
+              <line x1="0" y1="80" x2="90" y2="80" stroke="rgba(201,168,76,0.1)" stroke-width="0.3" stroke-dasharray="2,4"/>
+              <line x1="0" y1="130" x2="90" y2="130" stroke="rgba(201,168,76,0.1)" stroke-width="0.3" stroke-dasharray="2,4"/>
+              <!-- Measurement markers -->
+              <line x1="6" y1="48" x2="6" y2="128" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+              <line x1="4" y1="48" x2="8" y2="48" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+              <line x1="4" y1="128" x2="8" y2="128" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+            </svg>
+            <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.25em;color:var(--gold);opacity:0.7;z-index:2">AVELYN TWIN</div>
+          </div>
+          <!-- Orbit ring -->
+          <div style="position:absolute;width:260px;height:260px;border:1px dashed rgba(201,168,76,0.1);border-radius:50%;animation:pulse 4s infinite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 6 — PRODUCT UNIVERSE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-accent" id="slide-6">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Product Universe</div>
+      <h2 class="headline animate-2">Not One Feature. <span class="gold">An Ecosystem.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="feature-grid animate-3">
+        <div class="feature-card">
+          <span class="feature-icon">🪞</span>
+          <div class="feature-title">AVELYN Mirror</div>
+          <div class="feature-desc">Your AI avatar — built from your photos. Try any garment in the world on your body, your face, your proportions. 360° views. Photorealistic.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">✂️</span>
+          <div class="feature-title">AVELYN Fit</div>
+          <div class="feature-desc">Rapid virtual try-on. Tap any product anywhere online. See it on your body in seconds. Diffusion-powered with cloth physics simulation.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <div class="feature-title">AVELYN Studio</div>
+          <div class="feature-desc">Your AI stylist. Conversational. Multimodal. Tell it your occasion, mood, budget, weather. It builds complete looks and renders them on your avatar.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">👗</span>
+          <div class="feature-title">AVELYN Closet</div>
+          <div class="feature-desc">Your digital wardrobe. Photo-scan what you own. AI identifies, categorizes, surfaces outfit combinations. The data engine that powers everything else.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎭</span>
+          <div class="feature-title">AVELYN Occasions</div>
+          <div class="feature-desc">High-stakes dressing intelligence. Weddings, galas, interviews, festivals. Proactive outfit planning linked to your calendar. Luxury concierge tier.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌊</span>
+          <div class="feature-title">AVELYN Discover</div>
+          <div class="feature-desc">Mood-first shopping. "I want to look quietly powerful." AI translates emotion into curated discovery. Not product grids — feelings made shoppable.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🏪</span>
+          <div class="feature-title">AVELYN Retail</div>
+          <div class="feature-desc">Smart mirror for physical stores. Walk in. Scan items. Virtual try-on instantly. Your AVELYN profile syncs across online and offline retail.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">♻️</span>
+          <div class="feature-title">AVELYN Resell</div>
+          <div class="feature-desc">Resale intelligence layer. Auto-value your closet. List across platforms simultaneously. AI-styled photos from catalog images. Enters the $350B secondhand market.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💎</span>
+          <div class="feature-title">AVELYN Drops</div>
+          <div class="feature-desc">Digital fashion drops. Luxury brands release avatar-exclusive digital garments. Collectible. Limited edition. 80%+ margins. Status objects in the AVELYN social layer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 7 — CREATOR ECONOMY -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-deep" id="slide-7">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Creator Economy</div>
+      <h2 class="headline animate-2">Fashion's Most Powerful Distribution<br>Channel — Finally <span class="gold">Monetized Properly.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="creator-grid animate-3">
+        <div>
+          <p class="subtext" style="margin-bottom:28px">
+            Fashion creators are the <strong>most effective sales force</strong> in the world. Their commerce infrastructure is embarrassingly primitive. AVELYN changes that permanently.
+          </p>
+          <div class="creator-flow">
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div class="flow-text"><strong>Creator builds their AVELYN storefront</strong> — avatar in their signature looks, curated collections, their taste as a product.</div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div class="flow-text"><strong>Follower visits.</strong> AI detects their body type, budget, and preferences automatically.</div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div class="flow-text"><strong>Every recommendation re-renders on the follower's own avatar.</strong> A creator who is 5'9" sells perfectly to a follower who is 5'3".</div>
+            </div>
+            <div class="flow-step" style="border-left:2px solid rgba(201,168,76,0.6);background:rgba(201,168,76,0.04)">
+              <div class="flow-num" style="color:var(--gold)">✓</div>
+              <div class="flow-text"><strong>Conversion happens.</strong> Creator earns. AVELYN earns. The follower sees themselves — not a stranger — in the clothes they're about to buy.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="margin-bottom:24px">
+            <div class="eyebrow" style="font-size:9px;margin-bottom:12px">The Competitive Gap We Exploit</div>
+            <div style="padding:20px;border:1px solid rgba(201,168,76,0.15);background:rgba(0,0,0,0.2);margin-bottom:12px">
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:#5C5040;margin-bottom:8px">TODAY'S CREATOR TOOLS</div>
+              <p style="font-size:13px;color:#5C5040;line-height:1.6">Flat affiliate links. Brand deals paid 90 days late. 30%+ platform commissions. Followers must imagine themselves in the creator's body. No body intelligence. No personalization.</p>
+            </div>
+            <div style="padding:20px;border:1px solid rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)">
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:8px">AVELYN CREATOR TOOLS</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.6">Intelligent storefront. Real-time commission tracking. Body-adaptive recommendations. Curated drops. AI co-stylist. A creator's taste becomes <strong style="color:var(--text)">scalable infrastructure</strong>.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="text-align:center;padding:16px;border:1px solid rgba(201,168,76,0.12)">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-light)">50M+</div>
+              <div style="font-size:11px;color:var(--text-muted)">Fashion creators globally</div>
+            </div>
+            <div style="text-align:center;padding:16px;border:1px solid rgba(201,168,76,0.12)">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-light)">$21B</div>
+              <div style="font-size:11px;color:var(--text-muted)">Creator commerce market 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 8 — BUSINESS MODELS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-base" id="slide-8">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Revenue Architecture</div>
+      <h2 class="headline animate-2">Seven Revenue Vectors. <span class="gold">All Compounding.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="revenue-grid animate-3">
+        <div class="revenue-item">
+          <div class="rev-badge">01</div>
+          <div class="rev-content">
+            <div class="rev-title">B2C Subscription — AVELYN Pro</div>
+            <div class="rev-desc">Unlimited AI styling, full avatar customization, priority fit prediction. Spotify-tier pricing. Target: 8–12% of active users convert. <strong style="color:var(--gold-light)">Pure recurring SaaS.</strong></div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">02</div>
+          <div class="rev-content">
+            <div class="rev-title">Commerce Commission</div>
+            <div class="rev-desc">8–15% commission on all GMV purchased through AVELYN's recommendation and try-on surfaces. As scale grows, conversion leverage earns higher rates. <strong style="color:var(--gold-light)">Highest volume stream.</strong></div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">03</div>
+          <div class="rev-content">
+            <div class="rev-title">B2B SaaS — Enterprise Brands</div>
+            <div class="rev-desc">Try-on SDK, sizing dashboard, catalog enrichment, customer analytics. Tier-priced by catalog size and render volume. Major retailer contracts = <strong style="color:var(--gold-light)">7-figure ARR.</strong></div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">04</div>
+          <div class="rev-content">
+            <div class="rev-title">API Licensing Platform</div>
+            <div class="rev-desc">Body mesh, VTON, fit prediction, taste recommendation — licensed as API services. Metered billing per call/render. Beauty, fitness, home design verticals beyond fashion. <strong style="color:var(--gold-light)">Category expansion.</strong></div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">05</div>
+          <div class="rev-content">
+            <div class="rev-title">Creator Marketplace</div>
+            <div class="rev-desc">10–20% platform fee on all commerce through creator storefronts. Promoted brand placement. Premium creator content subscriptions. <strong style="color:var(--gold-light)">Network-effect revenue.</strong></div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">06</div>
+          <div class="rev-content">
+            <div class="rev-title">Digital Fashion Economy</div>
+            <div class="rev-desc">Avatar cosmetics, premium identity skins, exclusive branded digital drops. Scarcity-driven purchase events. <strong style="color:var(--gold-light)">80%+ gross margin.</strong> Near-zero COGS.</div>
+          </div>
+        </div>
+        <div class="revenue-item">
+          <div class="rev-badge">07</div>
+          <div class="rev-content">
+            <div class="rev-title">Premium AI Concierge</div>
+            <div class="rev-desc">$99–299/month white-glove personal styling. Proactive wardrobe planning, luxury access, event curation. <strong style="color:var(--gold-light)">Highest ARPU tier.</strong> Highest retention.</div>
+          </div>
+        </div>
+        <div class="revenue-item" style="border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04)">
+          <div class="rev-badge" style="color:var(--gold)">+</div>
+          <div class="rev-content">
+            <div class="rev-title" style="color:var(--gold-bright)">Data Intelligence Products</div>
+            <div class="rev-desc">Anonymized aggregate trend intelligence — from billions of try-on and purchase signals — sold to brands, analysts, and retailers as a market intelligence subscription. <strong style="color:var(--gold-light)">Zero marginal cost data asset.</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 9 — MARKET SIZE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-accent" id="slide-9">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Market Opportunity</div>
+      <h2 class="headline animate-2">The Category Is <span class="gold">Enormous.</span><br>The Intelligence Layer Does Not Exist Yet.</h2>
+      <div class="gold-line animate-2"></div>
+      <div class="two-col animate-3" style="align-items:center">
+        <div class="market-rings">
+          <div class="ring ring-1">
+            <div class="ring-label outer" style="top:-36px;white-space:nowrap">
+              <div class="ring-value">$1.7T</div>
+              <div class="ring-sublabel">TOTAL FASHION MARKET</div>
+            </div>
+          </div>
+          <div class="ring ring-2">
+            <div style="position:absolute;right:-90px;top:20%;text-align:left">
+              <div class="ring-value" style="font-size:24px">$900B</div>
+              <div class="ring-sublabel">Fashion E-Commerce</div>
+            </div>
+          </div>
+          <div class="ring ring-3">
+            <div class="ring-center-text">
+              <div class="ring-value" style="font-size:20px">$80B+</div>
+              <div class="ring-sublabel">AI Commerce<br>Intelligence</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="stat-grid" style="grid-template-columns:1fr 1fr;gap:16px;max-width:none">
+            <div class="stat-block">
+              <div class="stat-number">$350B</div>
+              <div class="stat-label">Global secondhand fashion by 2027</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-number">$21B</div>
+              <div class="stat-label">Creator commerce market (2026)</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-number">600M</div>
+              <div class="stat-label">Youth under 25 in India alone</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-number">$50B</div>
+              <div class="stat-label">India's annual wedding economy</div>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding:16px 20px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04)">
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.6">
+              Farfetch IPO'd at <strong style="color:var(--text)">$6.2B</strong>. ASOS peaked at <strong style="color:var(--text)">£5.6B</strong>. They are <em>distributors</em>. AVELYN is the <span style="color:var(--gold-light)">intelligence that makes distribution work</span> — a picks-and-shovels play whose economics improve at every scale inflection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 10 — THE MOAT -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-deep" id="slide-10">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Competitive Advantage</div>
+      <h2 class="headline animate-2">The Moat Is Not a Wall.<br>It Is a <span class="gold">Compounding System.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <p class="subtext animate-3" style="margin-bottom:28px">Five interlocking advantages, each strengthening the others. Impossible to copy without the data — which can only be built through time and users.</p>
+      <div class="moat-list animate-4">
+        <div class="moat-item">
+          <div class="moat-num">I</div>
+          <div class="moat-text">
+            <div class="moat-title">Body Data Moat</div>
+            <div class="moat-desc">The world's largest private database of body measurements, proportions, and fit preferences. Every new user improves the models for every other user. Cannot be bought — must be built.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-num">II</div>
+          <div class="moat-text">
+            <div class="moat-title">Taste Embedding Moat</div>
+            <div class="moat-desc">After 500 interactions, AVELYN understands your aesthetic preferences with a depth no competitor can rebuild in a year. Switching cost: losing a fully calibrated AI model of yourself.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-num">III</div>
+          <div class="moat-text">
+            <div class="moat-title">Avatar Attachment Moat</div>
+            <div class="moat-desc">A user who has built, personalized, and used their AVELYN avatar for a year has a deep emotional attachment to it. Rebuilding elsewhere is not just cumbersome — it is uncomfortable.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-num">IV</div>
+          <div class="moat-text">
+            <div class="moat-title">Brand Partnership Flywheel</div>
+            <div class="moat-desc">More brands → more training data → better try-on quality → more attractive to new brands. A platform flywheel that accelerates the longer it runs.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-num">V</div>
+          <div class="moat-text">
+            <div class="moat-title">Creator Network Lock-In</div>
+            <div class="moat-desc">Influential creators who build their commerce infrastructure on AVELYN bring their audiences. Moving to a competitor requires rebuilding the storefront AND persuading the audience to migrate.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 11 — INDIA FIRST + GLOBAL -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-base" id="slide-11">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Go-To-Market Strategy</div>
+      <h2 class="headline animate-2"><span class="gold">India First.</span> Then the World.</h2>
+      <div class="gold-line animate-2"></div>
+      <div class="two-col animate-3">
+        <div>
+          <div style="padding:24px;border:1px solid rgba(201,168,76,0.25);background:rgba(201,168,76,0.04);margin-bottom:20px">
+            <div class="eyebrow" style="font-size:9px;margin-bottom:12px">Why India Is the Perfect Launchpad</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;gap:12px;font-size:13px;color:var(--text-muted);line-height:1.5"><span style="color:var(--gold)">◆</span> 600M+ youth under 25. Mobile-first. Fashion-aspirational.</div>
+              <div style="display:flex;gap:12px;font-size:13px;color:var(--text-muted);line-height:1.5"><span style="color:var(--gold)">◆</span> Massive sizing mismatch — Indian proportions diverge from Western standards all global brands use.</div>
+              <div style="display:flex;gap:12px;font-size:13px;color:var(--text-muted);line-height:1.5"><span style="color:var(--gold)">◆</span> $50B wedding economy — highest-stakes fashion decisions, highest willingness to pay.</div>
+              <div style="display:flex;gap:12px;font-size:13px;color:var(--text-muted);line-height:1.5"><span style="color:var(--gold)">◆</span> Enormous creator economy on Myntra, Ajio, Nykaa — undermonetized infrastructure. AVELYN is the fix.</div>
+              <div style="display:flex;gap:12px;font-size:13px;color:var(--text-muted);line-height:1.5"><span style="color:var(--gold)">◆</span> India's body data is the most underrepresented in global fashion AI. First mover owns this forever.</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px;border:1px solid rgba(201,168,76,0.12);background:rgba(0,0,0,0.2)">
+            <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.2em;color:var(--gold);margin-bottom:10px">INDIA LAUNCH STRATEGY</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.6">Partner with 3–5 major Indian fashion brands. Launch free VTON + wardrobe tool. Onboard 50–100 mid-tier creators to storefront beta. Lead PR with: <em style="color:var(--text)">"Finally see how it looks on YOUR body."</em></p>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.25em;color:var(--text-dim);margin-bottom:16px">GLOBAL EXPANSION SEQUENCE</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">🇮🇳 Y1</div>
+              <div class="timeline-content">
+                <div class="tl-title">India — The Training Ground</div>
+                <div class="tl-desc">Consumer app launch. Creator storefront beta. Brand SDK integrations. Build the world's first India-specific fashion body dataset.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">🇦🇪 Y2</div>
+              <div class="timeline-content">
+                <div class="tl-title">UAE — Luxury Proof Point</div>
+                <div class="tl-desc">Multi-ethnic body modeling. Luxury brand relationships. High-ARPU concierge market. Occasion economy validation.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">🇬🇧 Y2–3</div>
+              <div class="timeline-content">
+                <div class="tl-title">UK / Europe — Fashion Intelligence</div>
+                <div class="tl-desc">Premium positioning. Sustainability angle — buy less, buy correctly. Multicultural consumer base tests body diversity.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">🇺🇸 Y3</div>
+              <div class="timeline-content">
+                <div class="tl-title">USA — Enterprise + Creator Scale</div>
+                <div class="tl-desc">B2B-first entry via DTC brand SDK deals. Creator economy ambassador network. Consumer launch from established brand logos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 12 — TECHNOLOGY -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-accent" id="slide-12">
+    <div class="corner-ornament tl"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">Technical Architecture</div>
+      <h2 class="headline animate-2">Seven AI Layers. <span class="gold">One Compounding Platform.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="feature-grid animate-3" style="grid-template-columns:repeat(4,1fr);max-width:none">
+        <div class="feature-card">
+          <div class="feature-title">Mesh Engine</div>
+          <div class="feature-desc">HMR2.0 + SMPL-X body reconstruction. Personal Body Twin from 2 photos. LiDAR augmentation for iPhone Pro users.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Diffusion Pipeline</div>
+          <div class="feature-desc">SD-inpainting + ControlNet VTON. Cloth physics simulation. Identity-locked generation. Temporal consistency for video try-on.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">LLM Stylist</div>
+          <div class="feature-desc">Fashion-finetuned multimodal LLM. Persistent per-user memory. Real-time inventory grounding. Cultural & occasion context.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Taste Graph</div>
+          <div class="feature-desc">Heterogeneous GNN connecting users, items, creators, brands, occasions. Taste embeddings updated in real time with every interaction.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Vision Layer</div>
+          <div class="feature-desc">Garment segmentation. Attribute extraction. Outfit parsing. Brand recognition. Ingests any brand catalog automatically — no manual tagging.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Avatar Rendering</div>
+          <div class="feature-desc">3D Gaussian splatting for mobile. NeRF face reconstruction. Neural hairstyle synthesis. Preview on-device; photorealistic render server-side.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">Fashion Twin</div>
+          <div class="feature-desc">Overarching user data architecture: body mesh + taste embeddings + wardrobe + purchase history + occasion calendar. The compounding moat.</div>
+        </div>
+        <div class="feature-card" style="border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.06)">
+          <div class="feature-title" style="color:var(--gold-bright)">The Data Moat</div>
+          <div class="feature-desc" style="color:var(--text-muted)">Every interaction enriches every model. Body data → better fit. Taste data → better style. Purchase data → better prediction. <strong style="color:var(--text)">Impossible to replicate without time.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 13 — THE 2035 VISION -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide bg-deep" id="slide-13">
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="slide-content">
+      <div class="eyebrow animate-1">The 2035 Vision</div>
+      <h2 class="headline animate-2">AVELYN Is Not Just a Company.<br>It Is a <span class="gold">Paradigm Shift.</span></h2>
+      <div class="gold-line animate-2"></div>
+      <div class="two-col animate-3">
+        <div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year" style="font-size:18px;min-width:80px">400M</div>
+              <div class="timeline-content">
+                <div class="tl-title">Active Users Across 60 Countries</div>
+                <div class="tl-desc">Each with a Personal Fashion Twin — body, taste, wardrobe, occasions, decade of style evolution.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year" style="font-size:18px;min-width:80px">Default</div>
+              <div class="timeline-content">
+                <div class="tl-title">The Fashion Intelligence Layer for All E-Commerce</div>
+                <div class="tl-desc">Like Google Analytics is the analytics default — AVELYN's VTON and fit SDK runs invisibly in the checkout flow of thousands of fashion brands globally.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year" style="font-size:18px;min-width:80px">−22pp</div>
+              <div class="timeline-content">
+                <div class="tl-title">Return Rate Drop — Industry-Wide</div>
+                <div class="tl-desc">The ecological footprint of fashion commerce measurably reduced. AVELYN is the most impactful sustainable fashion initiative that never called itself sustainability.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year" style="font-size:18px;min-width:80px">Beyond</div>
+              <div class="timeline-content">
+                <div class="tl-title">Beauty. Fitness. Home Design.</div>
+                <div class="tl-desc">The Personal Identity Layer expands. The body profile and taste embedding built for fashion becomes the aesthetic infrastructure for all consumer life decisions.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:20px">
+          <div class="quote-block">
+            <div class="quote-text">"By 2035, when someone asks what to wear, where to buy it, whether it fits, whether it suits them — the answer is simple. Ask AVELYN."</div>
+          </div>
+          <div style="padding:24px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04)">
+            <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.25em;color:var(--gold);margin-bottom:12px">THE LONG GAME</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.7">
+              AVELYN's long-term ambition is a <strong style="color:var(--text)">Personal Identity Layer</strong> that sits across all digital commerce — applicable wherever personal aesthetics matter. It is a platform at the scale of <strong style="color:var(--text)">Google or Apple's identity infrastructure</strong>, applied to the aesthetic and commercial dimension of human life.
+            </p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="text-align:center;padding:16px;border:1px solid rgba(201,168,76,0.15)">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold-light)">$6.2B</div>
+              <div style="font-size:11px;color:var(--text-muted)">Farfetch at IPO — just a distributor</div>
+            </div>
+            <div style="text-align:center;padding:16px;border:1px solid rgba(201,168,76,0.15)">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold-light)">∞</div>
+              <div style="font-size:11px;color:var(--text-muted)">AVELYN owns the intelligence layer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← PREV</button>
+  <div class="nav-dots" id="navDots"></div>
+  <div class="nav-counter"><span id="currentNum">01</span> / <span id="totalNum">13</span></div>
+  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">NEXT →</button>
+</nav>
+
+<script>
+  const totalSlides = 13;
+  let current = 1;
+
+  // Build dots
+  const dotsContainer = document.getElementById('navDots');
+  for (let i = 1; i <= totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  document.getElementById('totalNum').textContent = String(totalSlides).padStart(2, '0');
+
+  function goTo(n) {
+    const prevSlide = document.getElementById(`slide-${current}`);
+    prevSlide.classList.remove('active');
+    prevSlide.classList.add('exit');
+    setTimeout(() => prevSlide.classList.remove('exit'), 700);
+
+    current = n;
+    const nextSlide = document.getElementById(`slide-${current}`);
+    nextSlide.classList.add('active');
+
+    document.getElementById('currentNum').textContent = String(current).padStart(2, '0');
+    document.getElementById('slideNum').textContent = `${String(current).padStart(2,'0')} / ${totalSlides}`;
+
+    // Update dots
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i + 1 === current);
+    });
+  }
+
+  function changeSlide(dir) {
+    const next = Math.max(1, Math.min(totalSlides, current + dir));
+    if (next !== current) goTo(next);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+
+  // Swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+</script>
+</body>
+</html>

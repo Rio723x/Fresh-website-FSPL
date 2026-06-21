@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinetic™ — Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-bg: #A8CC24; /* Muted, premium yellow-green */
+    --neon-text: #73940F; /* Readable dark lime-green */
+    --black: #111111;
+    --grey-dark: #555555;
+    --grey-light: #E5E5E5;
+    --white: #FFFFFF;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SLIDE CONTAINER ─── */
+  .slide {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  /* ─── FOOTER ─── */
+  .slide-footer {
+    margin-top: auto;
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--grey-dark);
+  }
+  .slide-footer strong {
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1 {
+    font-size: clamp(70px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.03em;
+  }
+  
+  h2.section-title {
+    font-size: 56px;
+    font-weight: 900;
+    margin: 0 0 40px 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 28px;
+    color: var(--grey-dark);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+
+  .neon-text {
+    color: var(--neon-text);
+  }
+
+  /* ─── SS1: PROBLEMS ─── */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+  }
+  .col-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--neon-text);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .col-text {
+    font-size: 20px;
+    color: var(--grey-dark);
+    line-height: 1.6;
+  }
+  .source-text {
+    font-size: 14px;
+    color: var(--grey-dark);
+    margin-top: 40px;
+  }
+
+  /* ─── SS2/SS3: FEATURE LAYOUT ─── */
+  .feature-wrap {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex: 1;
+  }
+  .feature-content {
+    flex: 1.2;
+  }
+  .feature-visual {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+  }
+  .feature-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .feature-num {
+    font-size: 72px;
+    font-weight: 900;
+    color: var(--grey-light);
+    line-height: 1;
+  }
+  .feature-title {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+  .feature-desc {
+    font-size: 22px;
+    color: var(--grey-dark);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .feature-quote {
+    font-size: 28px;
+    color: var(--neon-text);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .phone-mockup {
+    width: 280px;
+    height: 580px;
+    border: 12px solid var(--black);
+    border-radius: 40px;
+    background: #FAFAFA;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  .phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 25px;
+    background: var(--black);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  /* ─── SS4: MARKET OPPORTUNITY (BAR CHART) ─── */
+  .chart-subtitle {
+    font-size: 20px;
+    color: var(--grey-dark);
+    margin-bottom: 60px;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+  .bar-chart-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    height: 350px;
+    border-bottom: 1px solid var(--grey-light);
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+  }
+  .bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  .bar {
+    width: 70%;
+    background-color: var(--neon-bg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 10px;
+    font-weight: 700;
+    color: var(--black);
+    font-size: 14px;
+  }
+  .bar-label {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* ─── SS5: BUSINESS MODEL (DONUT CHART) ─── */
+  .bm-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--neon-text);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  .bm-subtitle {
+    font-size: 20px;
+    color: var(--grey-dark);
+    margin-bottom: 50px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .bm-layout {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+  
+  /* CSS Donut Chart */
+  .donut-chart {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: conic-gradient(var(--black) 0% 50%, var(--neon-bg) 50% 75%, var(--grey-dark) 75% 90%, var(--grey-light) 90% 100%);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .donut-inner {
+    position: absolute;
+    top: 35px; left: 35px; right: 35px; bottom: 35px;
+    background: var(--white);
+    border-radius: 50%;
+  }
+
+  .bm-legend {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .legend-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .legend-title {
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .legend-desc {
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.4;
+  }
+
+  .revenue-box {
+    width: 320px;
+    background: #F9F9F9;
+    border-radius: 12px;
+    padding: 30px;
+    flex-shrink: 0;
+  }
+  .revenue-box h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid var(--black);
+    padding-bottom: 10px;
+  }
+  .rev-stage {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .rev-stage::after {
+    content: '↓';
+    display: block;
+    text-align: center;
+    color: var(--grey-light);
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .rev-stage:last-child::after {
+    display: none;
+  }
+  .rev-time {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--neon-text);
+    margin-bottom: 4px;
+  }
+  .rev-name {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .rev-desc {
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.4;
+  }
+
+  /* ─── TABLES & LISTS ─── */
+  .clean-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .clean-table th {
+    text-align: left;
+    padding: 16px;
+    border-bottom: 2px solid var(--grey-light);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .clean-table td {
+    padding: 16px;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 14px;
+    color: var(--grey-dark);
+  }
+  .clean-table .highlight {
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .clean-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  .list-item {
+    display: flex;
+    gap: 24px;
+  }
+  .list-num {
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--grey-light);
+  }
+  .list-content {
+    flex: 1;
+  }
+  .list-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .list-desc {
+    font-size: 20px;
+    color: var(--grey-dark);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .three-col { grid-template-columns: 1fr; gap: 30px; }
+    .feature-wrap { flex-direction: column; }
+    .bm-layout { flex-direction: column; }
+    .revenue-box { width: 100%; }
+    .bar-chart-container { height: 250px; }
+    .bar { font-size: 12px; }
+  }
+
+  /* ─── COMPETITION CHART ─── */
+  .competition-chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    height: 440px;
+    border: 2px solid var(--grey-light);
+    border-radius: 16px;
+    background: #FAFAFA;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    margin-right: 20px;
+  }
+  .axis-label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--grey-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .axis-label.y-axis {
+    transform: rotate(-90deg);
+    transform-origin: left bottom;
+    left: 20px;
+    bottom: 50%;
+    white-space: nowrap;
+  }
+  .axis-label.x-axis {
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .grid-line-y {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    border-left: 2px dashed var(--grey-light);
+  }
+  .grid-line-x {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 2px dashed var(--grey-light);
+  }
+  .plot-point {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--black);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  .dot.kinetic {
+    width: 24px;
+    height: 24px;
+    background: var(--neon-bg);
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 15px rgba(168, 204, 36, 0.4);
+  }
+  .plot-label {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .plot-label.kinetic {
+    font-size: 16px;
+    color: var(--neon-text);
+  }
+  
+  /* ─── GTM DONUT CHART ─── */
+  .gtm-donut-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--black) 0% 40%,
+      var(--neon-bg) 40% 70%,
+      var(--grey-dark) 70% 90%,
+      var(--grey-light) 90% 100%
+    );
+    position: relative;
+    flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide">
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+      <h1>KINETIC</h1>
+      <div class="subtitle">
+        The Intelligence Layer for Appliance Ownership.
+      </div>
+      <div style="font-size: 14px; color: var(--grey-dark); margin-top: 40px; font-weight: 600;">
+        CONFIDENTIAL INVESTOR DECK
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>1</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: PROBLEMS -->
+  <div class="slide">
+    <h2 class="section-title">PROBLEMS</h2>
+    <div class="three-col">
+      <div>
+        <div class="col-title">DELAYS IN REPAIR RESOLUTION</div>
+        <div class="col-text">
+          Consumers wait 3 to 7 days for a technician visit. Service centres fail to diagnose the issue on the first visit 40% of the time, compounding delays into weeks and destroying the user experience.
+        </div>
+      </div>
+      <div>
+        <div class="col-title">ZERO TECHNICIAN VISIBILITY</div>
+        <div class="col-text">
+          When a consumer calls a service centre, they have no idea who is coming, where they are, or what their track record is. The entire process is completely opaque.
+        </div>
+      </div>
+      <div>
+        <div class="col-title">MASSIVE AMC PENETRATION GAP</div>
+        <div class="col-text">
+          Only 15% of appliance owners in India have any form of maintenance contract. The vast majority manage warranties reactively, losing thousands to preventable breakdowns.
+        </div>
+      </div>
+    </div>
+    <div class="source-text">Source: National Consumer Helpline NCH & GrandView Research</div>
+    
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>2</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: SOLUTION -->
+  <div class="slide">
+    <h2 class="section-title">SOLUTION</h2>
+    <div class="three-col">
+      <div>
+        <div class="col-title">CONSUMER DASHBOARD</div>
+        <div class="col-text">
+          A single intelligent app that manages every appliance a consumer owns. One tap to book a service, track technicians live, and manage all warranties without paperwork.
+        </div>
+      </div>
+      <div>
+        <div class="col-title">TECHNICIAN WORKFLOW</div>
+        <div class="col-text">
+          A dedicated app for technicians featuring smart job routing, digital diagnostic checklists, and guided service workflows to ensure higher first-visit resolution rates.
+        </div>
+      </div>
+      <div>
+        <div class="col-title">OEM INTELLIGENCE LAYER</div>
+        <div class="col-text">
+          Potential™ Analytics turns every service interaction into actionable intelligence for OEMs, reducing warranty churn and identifying predictive maintenance opportunities.
+        </div>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>3</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: ALL FEATURES -->
+  <div class="slide">
+    <h2 class="section-title">THE KINETIC ECOSYSTEM</h2>
+    <div class="subtitle">
+      A complete, end-to-end platform designed to transform how households manage, maintain, and repair their appliances.
+    </div>
+    
+    <div class="clean-list">
+      <div class="list-item">
+        <div class="list-num">1.</div>
+        <div class="list-content">
+          <div class="list-title">Unified Dashboard</div>
+          <div class="list-desc">A digital passport for your home. View all appliances, their health, and warranty status in one place.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">2.</div>
+        <div class="list-content">
+          <div class="list-title">SEVA™ Digital Twin</div>
+          <div class="list-desc">Proprietary intelligence that understands your appliance's state and predicts failures before they occur.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">3.</div>
+        <div class="list-content">
+          <div class="list-title">Instant Service & Live Tracking</div>
+          <div class="list-desc">Book verified technicians instantly and track their arrival in real-time, just like a cab.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">4.</div>
+        <div class="list-content">
+          <div class="list-title">Kinetic Care (Premium)</div>
+          <div class="list-desc">The Amazon Prime of appliance care. Priority routing, zero fees, and extended warranties for peace of mind.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>4</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: FEATURE 1 -->
+  <div class="slide">
+    <div class="feature-wrap">
+      <div class="feature-content">
+        <div class="feature-header">
+          <div class="feature-num">1.</div>
+          <div class="feature-title">UNIFIED<br>DASHBOARD</div>
+        </div>
+        <div class="feature-desc">
+          Create a unified digital passport for your home. Track every appliance, book vetted technicians instantly, and manage all Annual Maintenance Contracts from a single interface.
+          <br><br>
+          Kinetic eliminates the need to contact disparate service centres, bringing transparency, speed, and confidence to every service request.
+        </div>
+      </div>
+      <div class="feature-visual">
+        <img src="K1.png" alt="Feature UI" style="max-height: 520px; max-width: 100%; width: auto; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--grey-light);">
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>5</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: FEATURE 2 -->
+  <div class="slide">
+    <div class="feature-wrap">
+      <div class="feature-content">
+        <div class="feature-header">
+          <div class="feature-num">2.</div>
+          <div class="feature-title">SEVA™ DIGITAL<br>TWIN</div>
+        </div>
+        <div class="feature-desc">
+          A proprietary intelligence layer that understands the real-time state of your appliances. It logs every repair, tracks part replacements, and monitors the life cycle.
+          <br><br>
+          SEVA™ curates predictive maintenance alerts specifically tailored to the age and model of the appliance, stopping breakdowns before they happen.
+        </div>
+      </div>
+      <div class="feature-visual">
+        <img src="K2.png" alt="Feature UI" style="max-height: 520px; max-width: 100%; width: auto; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--grey-light);">
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>6</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: FEATURE 3 -->
+  <div class="slide">
+    <div class="feature-wrap">
+      <div class="feature-content">
+        <div class="feature-header">
+          <div class="feature-num">3.</div>
+          <div class="feature-title">INSTANT<br>SERVICE &amp;<br>TRACKING</div>
+        </div>
+        <div class="feature-desc">
+          Say goodbye to opaque scheduling. With Kinetic, you can book an expert technician in one tap and watch them approach your location in real-time.
+          <br><br>
+          Know exactly who is coming, their ratings, and past job success rates.
+        </div>
+      </div>
+      <div class="feature-visual">
+        <img src="K3.png" alt="Feature UI" style="max-height: 520px; max-width: 100%; width: auto; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--grey-light);">
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>7</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: FEATURE 4 -->
+  <div class="slide">
+    <div class="feature-wrap">
+      <div class="feature-content">
+        <div class="feature-header">
+          <div class="feature-num">4.</div>
+          <div class="feature-title">KINETIC CARE</div>
+        </div>
+        <div class="feature-desc">
+          The <strong>Amazon Prime</strong> of appliance ownership.
+          <br><br>
+          A single subscription that unlocks priority routing for emergencies, zero convenience fees on all bookings, and extended warranties across your home. Peace of mind on autopilot.
+        </div>
+      </div>
+      <div class="feature-visual">
+        <img src="K4.png" alt="Feature UI" style="max-height: 520px; max-width: 100%; width: auto; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid var(--grey-light);">
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>8</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: MARKET OPPORTUNITY -->
+  <div class="slide">
+    <h2 class="section-title">MARKET OPPORTUNITY</h2>
+    <div class="chart-subtitle">
+      India's home services market shows strong annual growth YoY, paired with the rapid expansion of smart appliance ownership in Tier 1 and Tier 2 cities.
+    </div>
+    
+    <div class="bar-chart-container">
+      <div class="bar-group">
+        <div class="bar" style="height: 40%;">₹1.5L Cr</div>
+        <div class="bar-label">2025</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 50%;">₹2.8L Cr</div>
+        <div class="bar-label">2026</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 60%;">₹3.6L Cr</div>
+        <div class="bar-label">2027</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 70%;">₹4.8L Cr</div>
+        <div class="bar-label">2028</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 85%;">₹6.5L Cr</div>
+        <div class="bar-label">2029</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 100%;">₹8.4L Cr</div>
+        <div class="bar-label">2030</div>
+      </div>
+      
+      <div style="width: 200px; padding-left: 20px; margin-bottom: 20px;">
+        <div style="font-size: 12px; color: var(--grey-dark); line-height: 1.5;">
+          Projected Total Addressable Market for India's Home Services industry.
+          <br><br>
+          <em>Industry Projections, 2025-2030</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>9</div>
+    </div>
+  </div>
+
+  
+
+  <!-- SLIDE 10: GROWTH PROJECTION -->
+  <div class="slide">
+    <h2 class="section-title">GROWTH PROJECTION</h2>
+    <div class="chart-subtitle">
+      Realistic pathway to scaling user base and GMV by establishing geographical dominance in metros before Tier-2 expansion.
+    </div>
+    
+    <div class="bar-chart-container">
+      <div class="bar-group">
+        <div class="bar" style="height: 10%; background-color: var(--grey-light);">₹15L</div>
+        <div class="bar-label">Yr 1</div>
+        <div style="font-size:11px; margin-top:4px;">5K Users</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 25%; background-color: var(--grey-light);">₹1.2Cr</div>
+        <div class="bar-label">Yr 2</div>
+        <div style="font-size:11px; margin-top:4px;">25K Users</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 45%; background-color: var(--neon-bg);">₹6.0Cr</div>
+        <div class="bar-label">Yr 3</div>
+        <div style="font-size:11px; margin-top:4px;">100K Users</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 70%; background-color: var(--neon-bg);">₹35Cr</div>
+        <div class="bar-label">Yr 4</div>
+        <div style="font-size:11px; margin-top:4px;">500K Users</div>
+      </div>
+      <div class="bar-group">
+        <div class="bar" style="height: 100%; background-color: var(--neon-bg);">₹120Cr</div>
+        <div class="bar-label">Yr 5</div>
+        <div style="font-size:11px; margin-top:4px;">1.5M Users</div>
+      </div>
+      
+      <div style="width: 200px; padding-left: 20px; margin-bottom: 20px;">
+        <div style="font-size: 12px; color: var(--grey-dark); line-height: 1.5;">
+          Projected Annual Revenue & Active Households
+          <br><br>
+          <em>Assuming ₹1,500 ARPU from repairs + subscriptions.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>10</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: BUSINESS MODEL -->
+  <div class="slide">
+    <h2 class="section-title">BUSINESS MODEL</h2>
+    <div class="bm-title">TRANSACTIONS FIRST. PLATFORM LATER.</div>
+    <div class="bm-subtitle">
+      We begin by helping users book appliance repairs with absolute transparency. As the user base grows, Kinetic evolves into the intelligence layer connecting consumers, technicians, and OEMs.
+    </div>
+    
+    <div class="bm-layout">
+      <div class="donut-chart">
+        <div class="donut-inner"></div>
+      </div>
+      
+            <div class="bm-legend">
+        <div class="legend-item">
+          <div class="legend-title" style="font-size: 18px;">Kinetic Care Subscriptions (50%)</div>
+          <div class="legend-desc" style="font-size: 15px;"><strong>Like Amazon Prime for appliance care.</strong> Recurring household subscription for priority routing, extended warranties, and zero-fee bookings.</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-title" style="font-size: 18px;">AMC Sales &amp; Renewals (25%)</div>
+          <div class="legend-desc" style="font-size: 15px;">Commissions generated from selling/renewing Annual Maintenance Contracts directly on the platform.</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-title" style="font-size: 18px;">Platform Convenience Fees (15%)</div>
+          <div class="legend-desc" style="font-size: 15px;">Standard 15% take rate on all on-demand repair and service bookings.</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-title" style="font-size: 18px;">OEM Dashboard &amp; SaaS (10%)</div>
+          <div class="legend-desc" style="font-size: 15px;">Enterprise dashboard SaaS contracts (Potential™) giving OEMs predictive analytics and lifecycle insights.</div>
+        </div>
+      </div>
+      <div class="revenue-box">
+        <h3>REVENUE EVOLUTION</h3>
+        <div class="rev-stage">
+          <div class="rev-time">PHASE 1</div>
+          <div class="rev-name">Transaction Fees</div>
+          <div class="rev-desc">Monetize successful service completions.</div>
+        </div>
+        <div class="rev-stage">
+          <div class="rev-time">PHASE 2</div>
+          <div class="rev-name">Transactions + AMC Revenue</div>
+          <div class="rev-desc">Increase LTV through maintenance contracts.</div>
+        </div>
+        <div class="rev-stage">
+          <div class="rev-time">PHASE 3</div>
+          <div class="rev-name">Platform + Enterprise Data</div>
+          <div class="rev-desc">Unlock recurring B2B revenue via OEM analytics.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>11</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: COMPETITION -->
+  <div class="slide">
+    <h2 class="section-title">COMPETITION</h2>
+    <div class="subtitle" style="font-size: 24px; margin-bottom: 20px;">
+      Kinetic unifies the ownership lifecycle with proactive AI, leaving transactional competitors behind.
+    </div>
+    
+    <div style="display: flex; gap: 40px; align-items: center; flex: 1;">
+      <!-- Chart -->
+      <div class="competition-chart-container">
+        <div class="grid-line-y"></div>
+        <div class="grid-line-x"></div>
+        
+        <div class="axis-label y-axis">Proactive AI / Intelligence →</div>
+        <div class="axis-label x-axis">← Brand-Specific / Siloed — Unified Ecosystem →</div>
+        
+        <!-- Local Technicians -->
+        <div class="plot-point" style="left: 20%; top: 80%;">
+          <div class="dot"></div>
+          <div class="plot-label">Local Technicians</div>
+        </div>
+        
+        <!-- OEM Brand Apps -->
+        <div class="plot-point" style="left: 30%; top: 55%;">
+          <div class="dot"></div>
+          <div class="plot-label">OEM Brand Apps</div>
+        </div>
+        
+        <!-- OneDios -->
+        <div class="plot-point" style="left: 65%; top: 62%;">
+          <div class="dot"></div>
+          <div class="plot-label">OneDios</div>
+        </div>
+        
+        <!-- Urban Company -->
+        <div class="plot-point" style="left: 78%; top: 75%;">
+          <div class="dot"></div>
+          <div class="plot-label">Urban Company</div>
+        </div>
+        
+        <!-- KINETIC -->
+        <div class="plot-point" style="left: 85%; top: 20%;">
+          <div class="dot kinetic"></div>
+          <div class="plot-label kinetic">KINETIC</div>
+        </div>
+      </div>
+      
+      <!-- Value Proposition -->
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+        <div>
+          <div style="font-weight: 800; font-size: 20px; color: var(--neon-text); text-transform: uppercase; margin-bottom: 6px;">
+            Unified Lifecycle Management
+          </div>
+          <div style="font-size: 16px; color: var(--grey-dark); line-height: 1.5;">
+            Unlike OneDios (warranty ticketing) or Urban Company (on-demand booking), Kinetic covers the entire appliance lifecycle: diagnostics, tracking, warranties, and AMCs in one app.
+          </div>
+        </div>
+        
+        <div>
+          <div style="font-weight: 800; font-size: 20px; color: var(--neon-text); text-transform: uppercase; margin-bottom: 6px;">
+            Proactive vs. Reactive
+          </div>
+          <div style="font-size: 16px; color: var(--grey-dark); line-height: 1.5;">
+            Competitors wait for a failure to happen. Kinetic's SEVA™ Digital Twin monitors lifecycles, alerting households to renew AMCs or schedule preventive care before breakdowns occur.
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight: 800; font-size: 20px; color: var(--neon-text); text-transform: uppercase; margin-bottom: 6px;">
+            Zero-CAC OEM Loop
+          </div>
+          <div style="font-size: 16px; color: var(--grey-dark); line-height: 1.5;">
+            By giving manufacturers B2B dashboard integration, OEMs push Kinetic directly to consumers during point of sale, achieving organic growth at zero cost.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>12</div>
+    </div>
+  </div>
+  <!-- SLIDE 13: COMPETITIVE ADVANTAGE -->
+  <div class="slide">
+    <h2 class="section-title">THE MOAT</h2>
+    <div class="clean-list">
+      <div class="list-item">
+        <div class="list-num">1.</div>
+        <div class="list-content">
+          <div class="list-title">SERVICE HISTORY GRAPH</div>
+          <div class="list-desc">Every appliance builds a medical record. Issue frequency, parts used, and seasonal patterns. After 12 months, this graph is a defensible asset impossible to replicate from scratch.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">2.</div>
+        <div class="list-content">
+          <div class="list-title">PREDICTIVE RENEWALS</div>
+          <div class="list-desc">Kinetic knows exact expiry dates and renewal triggers. This predictive intelligence generates proactive revenue before the customer realizes they need an AMC.</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">3.</div>
+        <div class="list-content">
+          <div class="list-title">VOICE-FIRST REPORTING</div>
+          <div class="list-desc">India is a voice-first market. A customer speaks their problem, SEVA™ converts it to a structured request, unlocking Tier-2 and Tier-3 audiences immediately.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>13</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14: GO TO MARKET -->
+  <div class="slide">
+    <h2 class="section-title">GO-TO-MARKET</h2>
+    
+    <div style="display: flex; gap: 60px; align-items: center; flex: 1; margin-top: 20px;">
+      <!-- Strategy List -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; gap: 30px;">
+        <div class="list-item">
+          <div class="list-num">1.</div>
+          <div class="list-content">
+            <div class="list-title">OEM CO-MARKETING (ZERO CAC)</div>
+            <div class="list-desc">Brands push Kinetic as their official warranty and service partner to new appliance buyers, driving organic downloads at the point of purchase.</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-num">2.</div>
+          <div class="list-content">
+            <div class="list-title">RWA / COLONY DENSITY</div>
+            <div class="list-desc">Household referral loops in dense apartments create geographical monopolies, optimizing travel time and increasing technician capacity.</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-num">3.</div>
+          <div class="list-content">
+            <div class="list-title">TECHNICIAN ADVOCACY</div>
+            <div class="list-desc">Certified technicians onboard their existing informal customers onto Kinetic for better job scheduling and digital invoicing.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Visual Channels Donut Chart -->
+      <div style="flex: 0.8; display: flex; flex-direction: column; align-items: center; background: #FAFAFA; border: 1px solid var(--grey-light); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.02);">
+        <h3 style="font-size: 18px; font-weight: 800; margin: 0 0 20px 0; border-bottom: 2px solid var(--black); padding-bottom: 10px; width: 100%; text-align: center;">ACQUISITION MIX</h3>
+        
+        <div class="gtm-donut-chart">
+          <div class="donut-inner" style="position: absolute; top: 30px; left: 30px; right: 30px; bottom: 30px; background: var(--white); border-radius: 50%;"></div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px; width: 100%; font-size: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--black); margin-right: 8px; border-radius: 2px;"></span>OEM Partnerships</span>
+            <span>40%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--neon-bg); margin-right: 8px; border-radius: 2px;"></span>RWA / Community</span>
+            <span>30%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--grey-dark); margin-right: 8px; border-radius: 2px;"></span>Technician Referrals</span>
+            <span>20%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--grey-light); margin-right: 8px; border-radius: 2px;"></span>Direct Digital</span>
+            <span>10%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>14</div>
+    </div>
+  </div>
+  <!-- SLIDE 15: THE ASK -->
+  <div class="slide">
+    <h2 class="section-title">FUNDRAISING</h2>
+    
+    <div style="font-size: 64px; font-weight: 900; color: var(--neon-text); margin-bottom: 40px; line-height: 1;">
+      ₹50 LAKHS
+      <span style="font-size: 24px; color: var(--black); font-weight: 700; display: block; margin-top: 10px;">PRE-SEED ROUND</span>
+    </div>
+
+    <div class="three-col" style="margin-top: 0;">
+      <div>
+        <div class="col-title" style="color: var(--black);">PRODUCT & ENG (₹20L)</div>
+        <div class="col-text">Complete Kinetic Consumer, Technician apps, and Potential™ dashboard. Build SEVA™ intelligence MVP.</div>
+      </div>
+      <div>
+        <div class="col-title" style="color: var(--black);">ACQUISITION (₹15L)</div>
+        <div class="col-text">Micro-market launch campaign, RWA partnerships, and consumer growth targeting initial 5k households.</div>
+      </div>
+      <div>
+        <div class="col-title" style="color: var(--black);">TEAM & OPS (₹15L)</div>
+        <div class="col-text">Core founding team compensation. Scalable service infrastructure and 18 months of runway to Seed round metrics.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>15</div>
+    </div>
+  </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>11</div>
+    </div>
+  </div>
+
+
+
+  <!-- SLIDE 16: TEAM -->
+  <div class="slide">
+    <h2 class="section-title">THE TEAM</h2>
+    <div class="subtitle">
+      A convergence of operational expertise, engineering scale, and consumer growth.
+    </div>
+
+    <div class="three-col" style="margin-top: 40px;">
+      <!-- Team Member 1 Placeholder -->
+      <div style="text-align: center; padding: 40px 20px; background: #FAFAFA; border-radius: 16px; border: 1px solid var(--grey-light);">
+        <div style="width: 120px; height: 120px; border-radius: 50%; background: #E5E5E5; margin: 0 auto 20px auto; border: 4px solid var(--white); box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+          <span style="color: var(--grey-dark); font-size: 14px;">Photo</span>
+        </div>
+        <div style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Name Placeholder</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--neon-text); text-transform: uppercase; margin-bottom: 16px;">ROLE PLACEHOLDER</div>
+        <div style="font-size: 14px; color: var(--grey-dark); line-height: 1.5;">
+          Brief background description highlighting relevant experience, past companies, or key achievements.
+        </div>
+      </div>
+
+      <!-- Team Member 2 Placeholder -->
+      <div style="text-align: center; padding: 40px 20px; background: #FAFAFA; border-radius: 16px; border: 1px solid var(--grey-light);">
+        <div style="width: 120px; height: 120px; border-radius: 50%; background: #E5E5E5; margin: 0 auto 20px auto; border: 4px solid var(--white); box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+          <span style="color: var(--grey-dark); font-size: 14px;">Photo</span>
+        </div>
+        <div style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Name Placeholder</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--neon-text); text-transform: uppercase; margin-bottom: 16px;">ROLE PLACEHOLDER</div>
+        <div style="font-size: 14px; color: var(--grey-dark); line-height: 1.5;">
+          Brief background description highlighting relevant experience, past companies, or key achievements.
+        </div>
+      </div>
+
+      <!-- Team Member 3 Placeholder -->
+      <div style="text-align: center; padding: 40px 20px; background: #FAFAFA; border-radius: 16px; border: 1px solid var(--grey-light);">
+        <div style="width: 120px; height: 120px; border-radius: 50%; background: #E5E5E5; margin: 0 auto 20px auto; border: 4px solid var(--white); box-shadow: 0 10px 20px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center;">
+          <span style="color: var(--grey-dark); font-size: 14px;">Photo</span>
+        </div>
+        <div style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Name Placeholder</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--neon-text); text-transform: uppercase; margin-bottom: 16px;">ROLE PLACEHOLDER</div>
+        <div style="font-size: 14px; color: var(--grey-dark); line-height: 1.5;">
+          Brief background description highlighting relevant experience, past companies, or key achievements.
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div><strong>KINETIC</strong> | Appliance Ownership Platform</div>
+      <div>16</div>
+    </div>
+  </div>
+
+</body>
+</html>

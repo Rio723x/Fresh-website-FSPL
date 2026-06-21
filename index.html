@@ -9,8 +9,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
-  <!-- Three.js for the 3D intelligence hemisphere -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     :root {
@@ -26,8 +24,8 @@
       --border-dark: rgba(255, 255, 255, 0.08);
       --border-dark-hover: rgba(var(--primary-rgb), 0.3);
 
-      --bg-light: #ffffff;
-      --bg-light-secondary: #f8fafc;
+      --bg-light: #FAF5EF;
+      --bg-light-secondary: #F4EFEA;
       --border-light: #e2e8f0;
 
       --text-dark-primary: #ffffff;
@@ -188,9 +186,9 @@
     .header.scrolled {
       position: fixed;
       top: 18px;
-      left: 24px;
-      right: 24px;
-      width: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
       backdrop-filter: blur(18px) saturate(1.4);
       -webkit-backdrop-filter: blur(18px) saturate(1.4);
       border-radius: 999px;
@@ -201,6 +199,7 @@
 
     .header.scrolled .nav-container {
       padding: 0 28px;
+      gap: 48px;
     }
 
     .header .btn-primary {
@@ -212,6 +211,10 @@
     .header.footer-reached {
       transform: translateY(calc(-100% - 30px));
       pointer-events: none;
+    }
+
+    .header.scrolled.footer-reached {
+      transform: translate(-50%, calc(-100% - 30px));
     }
 
     /* Scrolled state: backdrop stays consistent (dark glass) regardless of section; only text color toggles */
@@ -301,6 +304,9 @@
       color: #ffffff;
       font-size: 1.8rem;
       cursor: pointer;
+      position: relative;
+      z-index: 100000;
+      transition: color 0.3s ease;
     }
 
     /* ══════ HERO SECTION ══════ */
@@ -1505,10 +1511,8 @@
       background: var(--bg-dark);
       overflow: hidden;
       border-bottom: 1px solid var(--border-dark);
-      padding: 100px 0;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
+      padding: 120px 0;
+      min-height: 800px;
     }
 
     /* Ambient fallback glow (shows if WebGL is unavailable) */
@@ -1526,156 +1530,331 @@
       pointer-events: none;
     }
 
-    /* WebGL canvas for the hemisphere */
-    .intel-sphere-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      display: block;
+    /* Header placed at the top of the section */
+    .intel-header {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto 64px;
+      position: relative;
+      z-index: 5;
     }
 
-    /* Glass card floating over the sphere face */
-    .intel-left {
-      position: absolute;
-      top: 50%;
-      left: 96px;
-      transform: translateY(-50%);
-      width: 440px;
-      max-width: 40vw;
-      padding: 38px 42px;
-      background: linear-gradient(160deg, rgba(11, 24, 17, 0.72) 0%, rgba(8, 17, 12, 0.62) 100%);
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
-      border: 1px solid rgba(var(--primary-rgb), 0.16);
-      border-radius: 26px;
-      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      z-index: 4;
-    }
-
-    .intel-card-content {
-      transition: opacity 0.26s ease, transform 0.26s ease;
-    }
-
-    .intel-left .intel-main-title {
-      font-size: clamp(1.4rem, 2vw, 2.2rem);
+    .intel-section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 12px;
-      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
-    .intel-left .intel-subtitle {
-      font-size: clamp(1rem, 1.5vw, 1.25rem);
+    .intel-section-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
       color: var(--primary);
-      margin-bottom: 16px;
-      font-weight: 600;
+      font-weight: 700;
+      margin-bottom: 24px;
     }
 
-    .intel-left .intel-desc-top {
-      font-size: 0.9rem;
-      line-height: 1.5;
+    .intel-section-desc {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.6;
       color: var(--text-dark-secondary);
-      margin: 0;
     }
 
-    /* Navigation list on the right side */
-    .intel-nav-list {
-      position: absolute;
-      top: 50%;
-      right: 96px;
-      transform: translateY(-50%);
+    /* Modern 3-Column Decision Intelligence Layout */
+    .intel-three-col-layout {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Column 1: Heading & Info (Left) */
+    .intel-col-left {
+      flex: 0 0 30%;
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      z-index: 10;
-      width: 340px;
-      max-width: 30vw;
+      justify-content: flex-start;
+      padding-top: 12px;
     }
 
-    .intel-nav-item {
-      font-family: var(--font-head);
-      font-size: clamp(1.1rem, 1.5vw, 1.45rem);
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.55);
+    .intel-col-left .intel-section-title {
+      text-align: left;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .intel-col-left .intel-section-subtitle {
+      text-align: left;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .intel-col-left .intel-section-desc {
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Column 2: Interactive Points List (Middle) */
+    .intel-col-middle {
+      flex: 0 0 33%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intel-points-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .intel-point-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-      position: relative;
-      padding-left: 28px;
+      padding: 14px 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transform: translateX(0);
+      transition: 
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .intel-nav-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+    .intel-point-dot {
+      position: relative;
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--primary);
-      opacity: 0;
-      transition: all 0.35s ease;
+      background: rgba(255, 255, 255, 0.35);
+      transition: 
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
     }
 
-    .intel-nav-item:hover {
-      color: rgba(255, 255, 255, 0.95);
+    .intel-point-dot::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 50%;
+      border: 1.5px solid #cdf78b;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: 
+        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intel-point-text {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.55);
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intel-point-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
       transform: translateX(4px);
     }
 
-    .intel-nav-item.active {
-      color: #ffffff;
+    .intel-point-item:hover .intel-point-text {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .intel-point-item.active {
+      background: rgba(205, 247, 139, 0.06);
+      border-color: rgba(205, 247, 139, 0.25);
       transform: translateX(8px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(205, 247, 139, 0.04);
     }
 
-    .intel-nav-item.active::before {
+    .intel-point-item.active .intel-point-dot {
+      background: #cdf78b;
+      transform: scale(1.1);
+    }
+
+    .intel-point-item.active .intel-point-dot::after {
       opacity: 1;
-      box-shadow: 0 0 12px var(--primary);
-      width: 10px;
-      height: 10px;
-      left: -1px;
+      transform: scale(1);
     }
 
-    /* Tablet / mobile: linearize */
+    .intel-point-item.active .intel-point-text {
+      color: #ffffff;
+    }
+
+    /* Column 3: Outcomes Display Card (Right) */
+    .intel-col-right {
+      flex: 0 0 34%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intel-detail-card {
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .intel-detail-content {
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .intel-detail-content.switching {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .intel-detail-title {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #cdf78b;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .intel-detail-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(74, 222, 128, 0.35);
+      margin-bottom: 18px;
+    }
+
+    .intel-detail-desc {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ffffff;
+      margin-bottom: 0;
+    }
+
+    .intel-outcomes-heading {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 800;
+      color: #cdf78b;
+      margin-bottom: 12px;
+    }
+
+    .intel-outcomes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .intel-outcome-bullet {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-dark-secondary);
+      text-align: left;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .intel-outcome-bullet::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #cdf78b;
+      font-weight: bold;
+    }
+
+    /* Ambient background semi-circle glow */
+    .intel-bg-glow {
+      position: absolute;
+      top: 50%;
+      left: -150px;
+      width: 600px;
+      height: 600px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, rgba(32, 64, 47, 0.02) 50%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Tablet / mobile styling */
     @media (max-width: 1024px) {
       .intelligence {
         min-height: auto;
         padding: 80px 0;
       }
 
-      .intel-left {
-        position: static;
-        width: 100%;
-        height: auto;
-        max-width: 600px;
-        transform: none;
-        padding: 32px 24px;
-        margin: 0 auto 32px;
+      .intel-bg-glow {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 480px;
+        height: 480px;
+        background: radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, rgba(32, 64, 47, 0.02) 50%, transparent 70%);
       }
 
-      .intel-left .intel-main-title,
-      .intel-left .intel-subtitle,
-      .intel-left .intel-desc-top {
+      .intel-three-col-layout {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .intel-col-left,
+      .intel-col-middle,
+      .intel-col-right {
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .intel-col-left .intel-section-title,
+      .intel-col-left .intel-section-subtitle,
+      .intel-col-left .intel-section-desc {
         text-align: center;
       }
 
-      .intel-nav-list {
-        position: static;
-        width: 100%;
-        max-width: 600px;
-        transform: none;
-        margin: 0 auto;
-        padding: 0 20px;
-        gap: 20px;
+      .intel-point-item {
+        padding: 12px 18px;
       }
 
-      .intel-nav-item {
-        font-size: 1.2rem;
-        padding-left: 24px;
-        text-align: left;
+      .intel-point-text {
+        font-size: 1.15rem;
+      }
+
+      .intel-point-item:hover,
+      .intel-point-item.active {
+        transform: translateX(4px);
+      }
+
+      .intel-detail-card {
+        min-height: auto;
+        padding: 30px;
       }
     }
 
@@ -2182,10 +2361,13 @@
 
     /* ══════ PROGRESSIVE QUALIFICATION EXPERIENCE ══════ */
     .contact-header-centered {
-      text-align: left;
+      text-align: center;
       margin-bottom: 36px;
       position: relative;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .contact-main-title {
@@ -2201,7 +2383,7 @@
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--text-dark-secondary);
       max-width: 700px;
-      margin: 0;
+      margin: 0 auto;
       font-weight: 400;
       line-height: 1.5;
     }
@@ -2213,7 +2395,7 @@
 
     .qualification-container {
       max-width: 1040px;
-      margin: 0;
+      margin: 0 auto;
       background: rgba(12, 19, 34, 0.45);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -2665,6 +2847,11 @@
       box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.2);
     }
 
+    .lead-form-input.input-error {
+      border-color: #ff4a4a !important;
+      box-shadow: 0 0 12px rgba(255, 74, 74, 0.25) !important;
+    }
+
     .lead-form-textarea {
       resize: vertical;
       min-height: 100px;
@@ -2779,15 +2966,25 @@
       text-align: left;
     }
 
+    .footer-title-container {
+      width: fit-content;
+      margin: 0 auto 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: relative;
+    }
+
     .footer-liftoff-text {
       font-family: var(--font-head);
-      font-size: 1.05rem;
+      font-size: clamp(1.15rem, 1.6vw, 1.45rem);
       font-weight: 700;
       color: #ffffff;
       line-height: 1.2;
       text-align: right;
-      margin-top: 4px;
-      margin-bottom: 32px;
+      margin-top: 8px;
+      margin-bottom: 0;
+      letter-spacing: 0.05em;
     }
 
     .footer-columns-wrap {
@@ -3024,6 +3221,76 @@
 
       .nav-menu {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(4, 7, 13, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        z-index: 99999;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-menu .nav-link {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #ffffff !important;
+      }
+
+      .nav-menu .nav-item-dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-menu .nav-chevron {
+        display: none;
+      }
+
+      .nav-menu .nav-dropdown {
+        position: static;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 0 0;
+        gap: 12px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .nav-menu .nav-dropdown-head {
+        display: none;
+      }
+
+      .nav-menu .nav-dropdown-item {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.6) !important;
+        padding: 4px 0;
+        display: inline-block;
+      }
+
+      .nav-menu .nav-dropdown-item.active {
+        color: var(--primary) !important;
+      }
+
+      .nav-menu .nav-dropdown-item.disabled {
+        opacity: 0.4;
       }
 
       .mobile-menu-btn {
@@ -3039,6 +3306,8 @@
         left: 10px;
         right: 10px;
         top: 10px;
+        width: auto;
+        transform: none;
         border-radius: 12px;
         height: 56px;
         background: rgba(10, 14, 22, 0.62);
@@ -3256,7 +3525,7 @@
           </div>
         </li>
         <li><a href="#products" class="nav-link">Products</a></li>
-        <li><a href="https://blog.getfixolutions.com" class="nav-link">Resources</a></li>
+        <li><a href="team.html" class="nav-link">Teams</a></li>
       </ul>
 
       <div>
@@ -3677,25 +3946,58 @@
   </section>
 
   <!-- ══════ DECISION INTELLIGENCE ══════ -->
-  <section class="section intelligence">
-    <canvas id="intelSphereCanvas" class="intel-sphere-canvas" aria-hidden="true"></canvas>
+  <section class="section intelligence" id="intelligence">
+    <!-- Ambient background glow decoration -->
+    <div class="intel-bg-glow"></div>
 
-    <div class="intel-left" id="intelCard">
-      <div class="intel-card-content" id="intelCardContent">
-        <h2 class="intel-main-title">INTELLIGENCE THAT SELLS FOR YOU</h2>
-        <p class="intel-subtitle">Live data. Real revenue.</p>
-        <p class="intel-desc-top">After-sales experience is now a purchasing decision. Today's consumers
-          choose brands by how they are treated after the sale, not just at it. Unlock this advantage today, because
-          <strong>if you want to survive, you will have to do it eventually.</strong></p>
+    <div class="container">
+      <div class="intel-three-col-layout">
+        <!-- Column 1: Section Heading & Intro (Left) -->
+        <div class="intel-col-left" data-aos>
+          <h2 class="intel-section-title">INTELLIGENCE THAT MATTERS</h2>
+          <p class="intel-section-subtitle">Live data. Real revenue.</p>
+          <p class="intel-section-desc">After-sales experience is now a purchasing decision. Today's consumers
+            choose brands by how they are treated after the sale, not just at it. Unlock this advantage today, because
+            <strong>if you want to survive, you will have to do it eventually.</strong></p>
+        </div>
+
+        <!-- Column 2: Capabilities Points List (Middle) -->
+        <div class="intel-col-middle" data-aos>
+          <div class="intel-points-list">
+            <div class="intel-point-item active" data-index="0">
+              <span class="intel-point-dot"></span>
+              <span class="intel-point-text">Service Worth Staying For</span>
+            </div>
+            <div class="intel-point-item" data-index="1">
+              <span class="intel-point-dot"></span>
+              <span class="intel-point-text">Maximize Workforce ROI</span>
+            </div>
+            <div class="intel-point-item" data-index="2">
+              <span class="intel-point-dot"></span>
+              <span class="intel-point-text">Loyalty Up, Pilferage Down</span>
+            </div>
+            <div class="intel-point-item" data-index="3">
+              <span class="intel-point-dot"></span>
+              <span class="intel-point-text">After-Sales Intelligence</span>
+            </div>
+            <div class="intel-point-item" data-index="4">
+              <span class="intel-point-dot"></span>
+              <span class="intel-point-text">Scale With Demand</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Outcomes Display Card (Right) -->
+        <div class="intel-col-right" data-aos>
+          <div class="intel-detail-card">
+            <div class="intel-detail-content" id="intelDetailContent">
+              <h3 class="intel-detail-title" id="intelDetailTitle">Service Worth Staying For</h3>
+              <p class="intel-detail-desc" id="intelDetailDesc">Deliver service experiences that customers remember and recommend. Turn after-sales from a cost center into a retention engine.</p>
+              <div id="intelDetailOutcomes" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="intel-nav-list">
-      <div class="intel-nav-item" data-index="0">Service Worth Staying For</div>
-      <div class="intel-nav-item" data-index="1">Maximize Workforce ROI</div>
-      <div class="intel-nav-item" data-index="2">Loyalty Up, Pilferage Down</div>
-      <div class="intel-nav-item" data-index="3">After-Sales Intelligence</div>
-      <div class="intel-nav-item" data-index="4">Scale With Demand</div>
     </div>
   </section>
 
@@ -3798,6 +4100,8 @@
       </div>
     </div>
   </section>
+
+
 
   <!-- ══════ CALCULATOR & CONTACT ══════ -->
   <!-- ══════ MERGED BOTTOM SECTION ══════ -->
@@ -4297,11 +4601,13 @@
                       <label class="lead-form-label" for="qualEmail">Work Email</label>
                       <input type="email" id="qualEmail" name="email" class="lead-form-input"
                         placeholder="e.g. john@abc.com" required>
+                      <span class="lead-input-error" id="qualEmailError" style="color: #ff4a4a; font-size: 0.8rem; margin-top: 4px; display: none;"></span>
                     </div>
                     <div class="lead-form-group">
                       <label class="lead-form-label" for="qualPhone">Phone Number</label>
                       <input type="tel" id="qualPhone" name="phone" class="lead-form-input"
                         placeholder="e.g. +91 XXXXX XXXXX" required>
+                      <span class="lead-input-error" id="qualPhoneError" style="color: #ff4a4a; font-size: 0.8rem; margin-top: 4px; display: none;"></span>
                     </div>
                     <div class="lead-form-group lead-form-group-full">
                       <label class="lead-form-label" for="qualNotes">Additional Notes (Optional)</label>
@@ -4341,12 +4647,11 @@
     <footer class="footer-new">
       <div class="container">
 
-        <!-- Giant Centered Title -->
-        <div class="footer-huge-title">
-          Fixolutions
+        <!-- Giant Centered Title with Slogan -->
+        <div class="footer-title-container">
+          <div class="footer-huge-title">Fixolutions</div>
+          <div class="footer-liftoff-text">Experience liftoff</div>
         </div>
-
-        <div class="footer-liftoff-text">Experience liftoff</div>
 
         <!-- Bottom Row: Logo & Bottom Links -->
         <div class="footer-bottom-row">
@@ -4968,15 +5273,83 @@
         }
       }
 
+      // Real-time input validation handlers
+      const emailInput = document.getElementById('qualEmail');
+      const phoneInput = document.getElementById('qualPhone');
+      const emailError = document.getElementById('qualEmailError');
+      const phoneError = document.getElementById('qualPhoneError');
+
+      emailInput.addEventListener('input', () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (emailRegex.test(emailInput.value.trim())) {
+          emailError.style.display = 'none';
+          emailInput.classList.remove('input-error');
+        }
+      });
+
+      phoneInput.addEventListener('input', () => {
+        const phoneRegex = /^\+?[0-9\s\-()]{8,18}$/;
+        if (phoneRegex.test(phoneInput.value.trim())) {
+          phoneError.style.display = 'none';
+          phoneInput.classList.remove('input-error');
+        }
+      });
+
       // Intercept submit event
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const nameVal = document.getElementById('qualName').value.trim();
+        const companyVal = document.getElementById('qualCompany').value.trim();
+        const emailVal = emailInput.value.trim();
+        const phoneVal = phoneInput.value.trim();
+
+        let isValid = true;
+
+        // Reset errors
+        emailError.style.display = 'none';
+        phoneError.style.display = 'none';
+        emailInput.classList.remove('input-error');
+        phoneInput.classList.remove('input-error');
+
+        // Email validation
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailVal) {
+          emailError.textContent = 'Email address is required.';
+          emailError.style.display = 'block';
+          emailInput.classList.add('input-error');
+          isValid = false;
+        } else if (!emailRegex.test(emailVal)) {
+          emailError.textContent = 'Please enter a valid work email address (e.g. name@company.com).';
+          emailError.style.display = 'block';
+          emailInput.classList.add('input-error');
+          isValid = false;
+        }
+
+        // Phone validation
+        const phoneRegex = /^\+?[0-9\s\-()]{8,18}$/;
+        if (!phoneVal) {
+          phoneError.textContent = 'Phone number is required.';
+          phoneError.style.display = 'block';
+          phoneInput.classList.add('input-error');
+          isValid = false;
+        } else if (!phoneRegex.test(phoneVal)) {
+          phoneError.textContent = 'Please enter a valid phone number (at least 8 digits, e.g. +91 98765 43210).';
+          phoneError.style.display = 'block';
+          phoneInput.classList.add('input-error');
+          isValid = false;
+        }
+
+        if (!isValid) {
+          emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
         // Update lead state contact details
-        leadState.name = document.getElementById('qualName').value;
-        leadState.company = document.getElementById('qualCompany').value;
-        leadState.email = document.getElementById('qualEmail').value;
-        leadState.phone = document.getElementById('qualPhone').value;
+        leadState.name = nameVal;
+        leadState.company = companyVal;
+        leadState.email = emailVal;
+        leadState.phone = phoneVal;
         leadState.notes = document.getElementById('qualNotes').value;
 
         // Bundle lead profile together
@@ -5054,6 +5427,28 @@ ${leadState.notes || 'N/A'}
 
       // Initial progress calculation
       updateHeaderAndProgress();
+    });
+
+    // Mobile Menu Toggle Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navMenu = document.querySelector('.nav-menu');
+      if (!menuBtn || !navMenu) return;
+
+      menuBtn.addEventListener('click', () => {
+        const isActive = navMenu.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+        menuBtn.innerHTML = isActive ? '✕' : '☰';
+      });
+
+      // Close menu when a link is clicked
+      navMenu.querySelectorAll('.nav-link, .nav-dropdown-item').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          menuBtn.classList.remove('active');
+          menuBtn.innerHTML = '☰';
+        });
+      });
     });
 
     // Navigation Scrolled Header Transition & Dynamic Link Coloring
@@ -5603,470 +5998,125 @@ ${leadState.notes || 'N/A'}
     }
   </script>
 
-  <!-- ══════ 3D INTELLIGENCE HEMISPHERE ══════ -->
+  <!-- ══════ DECISION INTELLIGENCE CONTROLLER ══════ -->
   <script>
     (function () {
-      const canvas = document.getElementById('intelSphereCanvas');
-      const section = canvas ? canvas.closest('.intelligence') : null;
-      const navItems = document.querySelectorAll('.intel-nav-item');
+      const navItems = document.querySelectorAll('.intel-point-item');
+      const infoTitle = document.getElementById('intelDetailTitle');
+      const infoSubtitle = document.getElementById('intelDetailDesc');
+      const infoOutcomes = document.getElementById('intelDetailOutcomes');
+      const detailContent = document.getElementById('intelDetailContent');
 
-      if (!canvas || !section || !window.THREE) return;
+      if (!navItems.length || !infoTitle || !infoSubtitle || !infoOutcomes || !detailContent) return;
 
-      let sphere, glow, renderer, scene, camera;
-      let textCanvas, ctx, texture;
-      
-      // Regions on the canvas texture (spaced by 410px)
-      const regions = [
+      // Copy for each of the 5 capabilities
+      const capabilityData = [
         {
-          title: "SERVICE WORTH STAYING FOR",
-          subtitle: "Deliver service so good that switching never crosses their mind.",
-          bullets: [
-            "Win loyalty by default.",
-            "Turn satisfaction into retention."
-          ],
-          data: "RETENTION: 98% | CSAT: 4.9/5",
-          x: 200,
-          metric: 0.98,
-          type: "ring"
+          title: "Service Worth Staying For",
+          subtitle: "Deliver service experiences that customers remember and recommend. Turn after-sales from a cost center into a retention engine.",
+          outcomes: [
+            "Higher customer retention through exceptional service experiences.",
+            "Better reviews and stronger brand reputation.",
+            "More referrals and long-term customer advocacy."
+          ]
         },
         {
-          title: "MAXIMIZE WORKFORCE ROI",
-          subtitle: "Get more from every technician and service partner.",
-          bullets: [
-            "Same investment. Higher utilization.",
-            "Higher productivity. Higher returns."
-          ],
-          data: "UTILIZATION: +45% | ROI: 3.4x",
-          x: 610,
-          metric: 45,
-          type: "bars"
+          title: "Maximize Workforce ROI",
+          subtitle: "Get more productivity and value from every technician. Optimize scheduling, routing, and field operations automatically.",
+          outcomes: [
+            "Same resource investment with significantly higher daily utilization.",
+            "Reduced technician idle time and optimized travel routes.",
+            "Higher operational returns and direct impact on bottom-line revenue."
+          ]
         },
         {
-          title: "LOYALTY UP, PILFERAGE DOWN",
-          subtitle: "Increase technician retention.",
-          bullets: [
-            "Reduce leakage. Improve accountability.",
-            "Build long-term service excellence."
-          ],
-          data: "LEAKAGE: -70% | RETENTION: 94%",
-          x: 1020,
-          metric: 0.70,
-          type: "radar"
+          title: "Loyalty Up, Pilferage Down",
+          subtitle: "Build long-term trust while cutting resource leakage. Improve field transparency and accountability across the board.",
+          outcomes: [
+            "Drastic reduction in spare parts leakage and resource pilferage.",
+            "Improved technician accountability with audit-ready records.",
+            "Strengthened customer and service partner loyalty."
+          ]
         },
         {
-          title: "AFTER-SALES INTELLIGENCE",
-          subtitle: "See which models customers truly love.",
-          bullets: [
-            "Spot lifecycle patterns early.",
-            "Know what sales never can."
-          ],
-          data: "ACCURACY: 99.2% | PREDICTIVE: Yes",
-          x: 1430,
-          metric: 0.992,
-          type: "wave"
+          title: "After-Sales Intelligence",
+          subtitle: "Transform operational data into predictive product insights. Spot lifecycle patterns and customer preferences early.",
+          outcomes: [
+            "Early detection of model-specific failure trends and lifecycle patterns.",
+            "Predictive spare-parts demand forecasting for smarter logistics.",
+            "Data-backed insights to guide future product design and sales."
+          ]
         },
         {
-          title: "SCALE WITH DEMAND",
-          subtitle: "Absorb seasonal surges with ease.",
-          bullets: [
-            "Expand into tier-2 cities.",
-            "Scale without the friction."
-          ],
-          data: "CAPACITY: +250% | STABILITY: 100%",
-          x: 1840,
-          metric: 2.5,
-          type: "nodes"
+          title: "Scale With Demand",
+          subtitle: "Expand your service network to new territories with zero friction. Absorb seasonal surges and peaks with ease.",
+          outcomes: [
+            "Flexible capacity scaling into tier-2 cities and remote regions.",
+            "Smooth management of seasonal demand surges without overhead.",
+            "Seamless partner integration under unified SLA controls."
+          ]
         }
       ];
 
-      let opacities = [0, 0, 0, 0, 0];
-      let hoveredIndex = -1;
-      let isHovered = false;
-      let ambientRotation = 0;
-      let sphereRotY = 0;
+      function updateActiveCapability(idx) {
+        const data = capabilityData[idx];
+        if (!data) return;
 
-      // Calculate target Y rotation for a given region X coordinate on the 2048px canvas.
-      // Offset of 0.35 aligns it nicely in the visible center-right dome.
-      function getTargetRotation(xVal) {
-        return (0.5 - (xVal / 2048)) * (2 * Math.PI) + 0.35;
-      }
+        // Fade out detail content
+        detailContent.classList.add('switching');
 
-      // Helper to wrap text on 2D canvas
-      function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        const words = text.split(' ');
-        let line = '';
-        for (let n = 0; n < words.length; n++) {
-          let testLine = line + words[n] + ' ';
-          let metrics = context.measureText(testLine);
-          let testWidth = metrics.width;
-          if (testWidth > maxWidth && n > 0) {
-            context.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-          } else {
-            line = testLine;
-          }
-        }
-        context.fillText(line, x, y);
-      }
+        setTimeout(() => {
+          // Update contents
+          infoTitle.textContent = data.title;
+          infoSubtitle.textContent = data.subtitle;
 
-      // Helper to draw round rect (compatible with older context)
-      function drawRoundRect(cCtx, x, y, width, height, radius) {
-        cCtx.beginPath();
-        cCtx.moveTo(x + radius, y);
-        cCtx.lineTo(x + width - radius, y);
-        cCtx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        cCtx.lineTo(x + width, y + height - radius);
-        cCtx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        cCtx.lineTo(x + radius, y + height);
-        cCtx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        cCtx.lineTo(x, y + radius);
-        cCtx.quadraticCurveTo(x, y, x + radius, y);
-        cCtx.closePath();
-      }
-
-      // Draw the canvas texture contents
-      function drawCanvasTexture(time) {
-        ctx.clearRect(0, 0, 2048, 1024);
-
-        // Subtle background grid
-        ctx.strokeStyle = 'rgba(205, 247, 139, 0.05)';
-        ctx.lineWidth = 1;
-        for (let xVal = 0; xVal < 2048; xVal += 128) {
-          ctx.beginPath();
-          ctx.moveTo(xVal, 0);
-          ctx.lineTo(xVal, 1024);
-          ctx.stroke();
-        }
-        for (let yVal = 0; yVal < 1024; yVal += 64) {
-          ctx.beginPath();
-          ctx.moveTo(0, yVal);
-          ctx.lineTo(2048, yVal);
-          ctx.stroke();
-        }
-
-        // Horizontal equator line
-        ctx.strokeStyle = 'rgba(205, 247, 139, 0.12)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(0, 512);
-        ctx.lineTo(2048, 512);
-        ctx.stroke();
-
-        // Draw regions
-        regions.forEach((r, idx) => {
-          const op = opacities[idx];
-          if (op <= 0.001) return;
-
-          ctx.globalAlpha = op;
-          const x = r.x;
-          const y = 512;
-
-          // Technical frame background
-          ctx.fillStyle = 'rgba(10, 30, 20, 0.6)';
-          drawRoundRect(ctx, x - 250, y - 200, 500, 400, 20);
-          ctx.fill();
-
-          // Corner brackets
-          ctx.strokeStyle = 'rgba(205, 247, 139, 0.35)';
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          // Top-left
-          ctx.moveTo(x - 210, y - 170);
-          ctx.lineTo(x - 240, y - 170);
-          ctx.lineTo(x - 240, y - 130);
-          // Bottom-left
-          ctx.moveTo(x - 210, y + 170);
-          ctx.lineTo(x - 240, y + 170);
-          ctx.lineTo(x - 240, y + 130);
-          // Top-right
-          ctx.moveTo(x + 210, y - 170);
-          ctx.lineTo(x + 240, y - 170);
-          ctx.lineTo(x + 240, y - 130);
-          // Bottom-right
-          ctx.moveTo(x + 210, y + 170);
-          ctx.lineTo(x + 240, y + 170);
-          ctx.lineTo(x + 240, y + 130);
-          ctx.stroke();
-
-          // Title
-          ctx.fillStyle = '#cdf78b';
-          ctx.font = 'bold 30px Sora, sans-serif';
-          ctx.fillText(r.title, x - 210, y - 110);
-
-          // Subtitle
-          ctx.fillStyle = '#ffffff';
-          ctx.font = '500 16px Inter, sans-serif';
-          wrapText(ctx, r.subtitle, x - 210, y - 70, 270, 22);
-
-          // Bullets
-          ctx.font = '500 15px Inter, sans-serif';
-          let bulletY = y + 15;
-          r.bullets.forEach((bullet) => {
-            ctx.fillStyle = '#cdf78b';
-            ctx.fillText('✓', x - 210, bulletY);
-            ctx.fillStyle = '#e2e8f0';
-            ctx.fillText(bullet, x - 190, bulletY);
-            bulletY += 30;
+          // Clear and rebuild outcomes
+          infoOutcomes.innerHTML = '';
+          data.outcomes.forEach(outcome => {
+            const item = document.createElement('div');
+            item.className = 'intel-outcome-bullet';
+            item.textContent = outcome;
+            infoOutcomes.appendChild(item);
           });
 
-          // Bottom data label
-          ctx.fillStyle = '#cdf78b';
-          ctx.font = 'bold 13px monospace';
-          ctx.fillText(r.data, x - 210, y + 140);
-
-          // Visual widget elements on the right side of the panel
-          const vX = x + 120;
-          const vY = y + 30;
-
-          ctx.strokeStyle = '#cdf78b';
-          ctx.fillStyle = '#cdf78b';
-          ctx.lineWidth = 2.5;
-
-          if (r.type === 'ring') {
-            // Rotating progress ring
-            ctx.beginPath();
-            ctx.arc(vX, vY, 35, 0, 2 * Math.PI);
-            ctx.strokeStyle = 'rgba(205, 247, 139, 0.15)';
-            ctx.stroke();
-
-            ctx.beginPath();
-            const startAngle = -Math.PI / 2;
-            const endAngle = startAngle + (2 * Math.PI * r.metric);
-            ctx.arc(vX, vY, 35, startAngle, endAngle);
-            ctx.strokeStyle = '#cdf78b';
-            ctx.stroke();
-
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 16px monospace';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('98%', vX, vY);
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'alphabetic';
-          } else if (r.type === 'bars') {
-            // Equalized bars
-            const barW = 10;
-            const spacing = 6;
-            const startX = vX - 28;
-            const startY = vY + 20;
-            for (let b = 0; b < 4; b++) {
-              const barH = 12 + b * 12;
-              ctx.fillStyle = b === 3 ? '#cdf78b' : 'rgba(205, 247, 139, 0.4)';
-              ctx.beginPath();
-              drawRoundRect(ctx, startX + b * (barW + spacing), startY - barH, barW, barH, 2);
-              ctx.fill();
-            }
-          } else if (r.type === 'radar') {
-            // Radar scanner
-            ctx.strokeStyle = 'rgba(205, 247, 139, 0.25)';
-            ctx.beginPath(); ctx.arc(vX, vY, 30, 0, 2 * Math.PI); ctx.stroke();
-            ctx.beginPath(); ctx.arc(vX, vY, 15, 0, 2 * Math.PI); ctx.stroke();
-            ctx.strokeStyle = '#cdf78b';
-            ctx.beginPath();
-            ctx.moveTo(vX, vY);
-            const radarAngle = (time * 0.0025) % (2 * Math.PI);
-            ctx.lineTo(vX + Math.cos(radarAngle) * 30, vY + Math.sin(radarAngle) * 30);
-            ctx.stroke();
-          } else if (r.type === 'wave') {
-            // Oscillating sine wave
-            ctx.strokeStyle = '#cdf78b';
-            ctx.beginPath();
-            for (let wx = -30; wx <= 30; wx++) {
-              const wy = Math.sin(wx * 0.12 + time * 0.008) * 12;
-              if (wx === -30) ctx.moveTo(vX + wx, vY + wy);
-              else ctx.lineTo(vX + wx, vY + wy);
-            }
-            ctx.stroke();
-          } else if (r.type === 'nodes') {
-            // Linked strategic nodes
-            const nodePositions = [
-              { x: -25, y: -15 },
-              { x: 25, y: -8 },
-              { x: 8, y: 20 },
-              { x: -18, y: 12 }
-            ];
-            ctx.strokeStyle = 'rgba(205, 247, 139, 0.35)';
-            ctx.beginPath();
-            ctx.moveTo(vX + nodePositions[0].x, vY + nodePositions[0].y);
-            ctx.lineTo(vX + nodePositions[1].x, vY + nodePositions[1].y);
-            ctx.lineTo(vX + nodePositions[2].x, vY + nodePositions[2].y);
-            ctx.lineTo(vX + nodePositions[3].x, vY + nodePositions[3].y);
-            ctx.closePath();
-            ctx.stroke();
-
-            ctx.fillStyle = '#cdf78b';
-            nodePositions.forEach(p => {
-              ctx.beginPath();
-              ctx.arc(vX + p.x, vY + p.y, 3.5, 0, 2 * Math.PI);
-              ctx.fill();
-            });
-          }
-        });
-
-        ctx.globalAlpha = 1.0;
+          // Fade back in
+          detailContent.classList.remove('switching');
+        }, 150);
       }
 
-      function resize() {
-        if (!renderer || !section) return;
-        const w = section.clientWidth, h = section.clientHeight;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-      }
+      let hoverTimeout = null;
 
-      function initThree() {
-        // Setup WebGL renderer
-        try {
-          renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-        } catch (e) { return; }
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-        camera.position.set(0, 0, 6.2);
-
-        // Hidden canvas texture setup
-        textCanvas = document.createElement('canvas');
-        textCanvas.width = 2048;
-        textCanvas.height = 1024;
-        ctx = textCanvas.getContext('2d');
-        texture = new THREE.CanvasTexture(textCanvas);
-
-        // Premium translucent physical material
-        const mat = new THREE.MeshPhysicalMaterial({
-          color: 0x051b0f,
-          emissive: 0xffffff,
-          emissiveMap: texture,
-          emissiveIntensity: 2.0,
-          transparent: true,
-          opacity: 0.94,
-          roughness: 0.18,
-          metalness: 0.12,
-          clearcoat: 1.0,
-          clearcoatRoughness: 0.08,
-          transmission: 0.25,
-          thickness: 1.0
-        });
-
-        // large Sphere shifted left to show 50% dome
-        const SHIFT = -1.65;
-        sphere = new THREE.Mesh(new THREE.SphereGeometry(2.9, 128, 128), mat);
-        sphere.position.x = SHIFT;
-        scene.add(sphere);
-
-        // Faint outer technical grid mesh (adds secondary parallax core effect)
-        const gridMat = new THREE.MeshBasicMaterial({
-          color: 0xcdf78b,
-          wireframe: true,
-          transparent: true,
-          opacity: 0.035
-        });
-        const gridSphere = new THREE.Mesh(new THREE.SphereGeometry(2.92, 48, 48), gridMat);
-        gridSphere.position.x = SHIFT;
-        scene.add(gridSphere);
-
-        // Core glow backing
-        glow = new THREE.Mesh(
-          new THREE.SphereGeometry(3.18, 64, 64),
-          new THREE.MeshBasicMaterial({
-            color: 0x4ade80,
-            transparent: true,
-            opacity: 0.12,
-            side: THREE.BackSide,
-            blending: THREE.AdditiveBlending
-          })
-        );
-        glow.position.x = SHIFT;
-        scene.add(glow);
-
-        // Lighting
-        scene.add(new THREE.AmbientLight(0x0a1e12, 0.85));
-        
-        const keyLight = new THREE.DirectionalLight(0xe4ffd3, 1.4);
-        keyLight.position.set(5, 5, 5);
-        scene.add(keyLight);
-
-        const rimLight = new THREE.PointLight(0x4ade80, 2.2, 45);
-        rimLight.position.set(-6, 2, 4);
-        scene.add(rimLight);
-
-        const fillLight = new THREE.PointLight(0x22c55e, 0.6, 45);
-        fillLight.position.set(4, -4, 4);
-        scene.add(fillLight);
-
-        // Hover events
-        navItems.forEach((item) => {
-          item.addEventListener('mouseenter', () => {
-            const idx = parseInt(item.dataset.index);
-            hoveredIndex = idx;
-            isHovered = true;
+      navItems.forEach(item => {
+        const handleInteraction = (immediate = false) => {
+          if (item.classList.contains('active')) return;
+          
+          const idx = parseInt(item.dataset.index);
+          
+          const execute = () => {
             navItems.forEach(n => n.classList.remove('active'));
             item.classList.add('active');
-          });
-        });
+            updateActiveCapability(idx);
+          };
 
-        section.addEventListener('mouseleave', () => {
-          isHovered = false;
-          hoveredIndex = -1;
-          navItems.forEach(n => n.classList.remove('active'));
-        });
-
-        resize();
-        window.addEventListener('resize', resize);
-        animate();
-      }
-
-      function animate() {
-        const time = performance.now();
-
-        // Target rotation calculation with shortest path logic
-        let targetRot = ambientRotation;
-        if (isHovered && hoveredIndex >= 0) {
-          targetRot = getTargetRotation(regions[hoveredIndex].x);
-        } else {
-          // Increment ambient rotation only in default state
-          ambientRotation += 0.0018;
-          targetRot = ambientRotation;
-        }
-
-        // Smooth spring interpolation with angle wrapping
-        let diff = targetRot - sphereRotY;
-        diff = Math.atan2(Math.sin(diff), Math.cos(diff));
-        sphereRotY += diff * 0.075;
-
-        // Apply rotation to meshes
-        sphere.rotation.y = sphereRotY;
-        sphere.rotation.x += (-0.08 - sphere.rotation.x) * 0.05;
-        
-        // Faint outer grid rotates at slightly different speed
-        scene.children.forEach(child => {
-          if (child.material && child.material.wireframe) {
-            child.rotation.y = sphereRotY * 1.05;
-            child.rotation.x = sphere.rotation.x * 0.8;
+          if (immediate) {
+            if (hoverTimeout) clearTimeout(hoverTimeout);
+            execute();
+          } else {
+            if (hoverTimeout) clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(execute, 80);
           }
+        };
+
+        item.addEventListener('mouseenter', () => handleInteraction(false));
+        item.addEventListener('click', () => handleInteraction(true));
+        item.addEventListener('mouseleave', () => {
+          if (hoverTimeout) clearTimeout(hoverTimeout);
         });
-
-        glow.rotation.copy(sphere.rotation);
-
-        // Animate region opacities
-        for (let i = 0; i < 5; i++) {
-          const targetOp = (isHovered && i === hoveredIndex) ? 1.0 : 0.0;
-          opacities[i] += (targetOp - opacities[i]) * 0.095;
-        }
-
-        // Draw dynamic canvas HUD overlay
-        drawCanvasTexture(time);
-        texture.needsUpdate = true;
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-      }
-
-      if (document.readyState === 'complete') initThree();
-      else window.addEventListener('load', initThree);
+      });
     })();
   </script>
+
+
 </body>
 
 </html>
