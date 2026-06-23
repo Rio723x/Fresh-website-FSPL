@@ -3268,12 +3268,22 @@
         transition: transform 0.25s ease;
       }
 
+      /* Touch browsers get "stuck" in :hover after a tap, which would
+         otherwise leave the desktop hover rule permanently flipping this
+         chevron to "up". Cancel it on mobile so only .open controls it. */
+      .nav-menu .nav-item-dropdown:hover .nav-chevron {
+        transform: none;
+      }
+
       .nav-menu .nav-item-dropdown.open .nav-chevron {
         transform: rotate(180deg);
       }
 
       .nav-menu .nav-dropdown {
         position: static;
+        min-width: 0;
+        width: 100%;
+        max-width: 320px;
         background: transparent;
         border: none;
         box-shadow: none;
@@ -3301,10 +3311,17 @@
       }
 
       .nav-menu .nav-dropdown-item {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: rgba(255, 255, 255, 0.6) !important;
         padding: 4px 0;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
       }
 
       .nav-menu .nav-dropdown-item.active {
