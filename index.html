@@ -3105,7 +3105,7 @@
       .workflow-flex-container {
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 12px;
       }
 
       .workflow-card {
@@ -3115,7 +3115,15 @@
 
       .workflow-arrow {
         transform: rotate(90deg);
-        margin: 16px 0;
+        margin: 0;
+      }
+
+      .workflow-card-header {
+        gap: 10px;
+      }
+
+      .workflow-card-title {
+        font-size: 1.15rem;
       }
 
       .observation-glass-card {
@@ -3256,7 +3264,12 @@
       }
 
       .nav-menu .nav-chevron {
-        display: none;
+        display: inline-block;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-menu .nav-item-dropdown.open .nav-chevron {
+        transform: rotate(180deg);
       }
 
       .nav-menu .nav-dropdown {
@@ -3264,15 +3277,23 @@
         background: transparent;
         border: none;
         box-shadow: none;
-        display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px 0 0 0;
+        padding: 0;
         gap: 12px;
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
         transform: none;
+        max-height: 0;
+        overflow: hidden;
+        display: flex;
+        transition: max-height 0.25s ease, padding 0.25s ease;
+      }
+
+      .nav-menu .nav-item-dropdown.open .nav-dropdown {
+        max-height: 400px;
+        padding: 10px 0 0 0;
       }
 
       .nav-menu .nav-dropdown-head {
@@ -5432,12 +5453,26 @@ ${leadState.notes || 'N/A'}
         menuBtn.innerHTML = isActive ? '✕' : '☰';
       });
 
-      // Close menu when a link is clicked
+      // On mobile, tapping the "Industries" link toggles its dropdown open/closed
+      // instead of navigating away or showing it permanently expanded.
+      const dropdownToggle = navMenu.querySelector('.nav-item-dropdown > .nav-link');
+      if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+          if (window.matchMedia('(max-width: 768px)').matches) {
+            e.preventDefault();
+            dropdownToggle.closest('.nav-item-dropdown').classList.toggle('open');
+          }
+        });
+      }
+
+      // Close menu when a link is clicked (excluding the dropdown toggle itself)
       navMenu.querySelectorAll('.nav-link, .nav-dropdown-item').forEach(link => {
+        if (link === dropdownToggle) return;
         link.addEventListener('click', () => {
           navMenu.classList.remove('active');
           menuBtn.classList.remove('active');
           menuBtn.innerHTML = '☰';
+          navMenu.querySelectorAll('.nav-item-dropdown.open').forEach(d => d.classList.remove('open'));
         });
       });
     });
