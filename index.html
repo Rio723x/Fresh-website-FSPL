@@ -3164,8 +3164,15 @@
         max-width: 320px !important;
       }
 
+      /* BUG-002 root cause: the desktop rule `.product-card-potential-large
+         .product-desktop-wrapper { width: 40% !important }` (specificity 0,2,0)
+         outranks the generic responsive `.product-desktop-wrapper { width: 100%
+         !important }` (0,1,0) above, so when the card stacks vertically on mobile
+         the dashboard image stays at 40% and renders as a tiny ~104px thumbnail.
+         Restore full wrapper width here (matching specificity, later in source). */
       .product-card-potential-large .product-desktop-wrapper {
-        max-width: 480px !important;
+        width: 100% !important;
+        max-width: 420px !important;
       }
 
       .product-info {
@@ -3306,6 +3313,16 @@
       .nav-menu .nav-item-dropdown.open .nav-dropdown {
         max-height: 400px;
         padding: 10px 0 0 0;
+      }
+
+      /* BUG-001 root cause: after a tap, touch browsers leave :hover "stuck",
+         so the desktop rule `.nav-item-dropdown:hover .nav-dropdown` (specificity
+         0,3,0) re-applies `transform: translateX(-50%)` and beats the mobile
+         `.nav-menu .nav-dropdown { transform: none }` (0,2,0) above — shoving the
+         static dropdown 50% off the left edge. Cancel it with a matching-specificity
+         rule placed later in source so the mobile layout always wins. */
+      .nav-menu .nav-item-dropdown:hover .nav-dropdown {
+        transform: none;
       }
 
       .nav-menu .nav-dropdown-head {
