@@ -3184,10 +3184,28 @@
       .product-card-potential-large .product-features {
         grid-template-columns: 1fr !important;
         gap: 8px !important;
+        /* Feature points read better left-aligned: lay the bullets out as a
+           tidy left-aligned column, presented as a centered block under the
+           still-centered heading. max-width keeps it from sprawling; it is
+           capped by the card width on the narrowest screens, so it stays
+           responsive down to 320px. */
+        justify-items: start;
+        text-align: left;
+        max-width: 300px;
+        margin-inline: auto;
       }
 
       .product-features li {
         justify-content: center;
+      }
+
+      /* Left-align the Potential card's feature points (beats the generic
+         `.product-features li { justify-content: center }` above, 0,3,0 > 0,2,0).
+         align-items:flex-start from the base keeps the check mark pinned
+         top-left when a point wraps to multiple lines. */
+      .product-card-potential-large .product-features li {
+        justify-content: flex-start;
+        text-align: left;
       }
 
       .product-link {
