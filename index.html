@@ -3261,6 +3261,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        max-width: 320px;
       }
 
       .nav-menu .nav-chevron {
@@ -3321,7 +3323,13 @@
         gap: 6px;
         width: 100%;
         max-width: 280px;
+        min-width: 0;
         text-align: center;
+      }
+
+      .nav-menu .nav-dropdown-item > span:first-child {
+        min-width: 0;
+        word-break: break-word;
       }
 
       .nav-menu .nav-dropdown-item.active {
