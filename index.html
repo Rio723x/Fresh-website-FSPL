@@ -3208,6 +3208,21 @@
         text-align: left;
       }
 
+      /* Same left-aligned feature points for the Kinetic cards (Consumer &
+         Technician) to match the Potential card. Their list is a flex column
+         (not a grid), so this needs only text-align + a capped, centered block;
+         the li rule (0,3,0) beats the generic centered rule (0,2,0) above. */
+      .product-card-kinetic .product-features {
+        text-align: left;
+        max-width: 300px;
+        margin-inline: auto;
+      }
+
+      .product-card-kinetic .product-features li {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
       .product-link {
         align-self: center;
       }
