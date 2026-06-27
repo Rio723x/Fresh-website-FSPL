@@ -1,0 +1,11 @@
+# Fixolutions
+> Fixolutions is a modern, end-to-end after-sales operating system and service intelligence platform for white goods, home appliances, and consumer electronics.
+
+## Core Pages
+- [Home Page](/index.html): Explains the Fixolutions platform, service workflow, and our product suite.
+- [Kinetic App](/kinetic.html): Our smart home service consumer app for booking repairs, tracking technicians in real-time, and verifying service steps.
+- [Team](/team.html): Meet the builders, designers, and strategists behind Fixolutions Systems.
+
+## Resources
+- [Blog Insights](/blog/index.html): Practical strategies, industry trends, and expert insights to help run a smarter, more efficient service organization.
+- [Reducing Technician Idle Time](/blog/posts/reduce-technician-idle-time.html): 5 practical ways to reduce field service technician idle time and increase productivity.
