@@ -4,22 +4,24 @@
   --primary: #cdf78b;
   --primary-hover: #bde27a;
   --primary-rgb: 205, 247, 139;
-  
-  --bg-kinetic: #FCFBF9; /* Warm off-white */
-  --bg-kinetic-dark: #121214; /* Deep charcoal */
-  
+
+  --bg-kinetic: #FCFBF9;
+  /* Warm off-white */
+  --bg-kinetic-dark: #121214;
+  /* Deep charcoal */
+
   --text-primary: #1A1A1A;
   --text-secondary: #5F5F63;
   --text-dark-mode: #EBEBEB;
   --text-dark-secondary: #A1A1A6;
-  
+
   --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-border: rgba(255, 255, 255, 0.8);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-  
+
   --glass-dark-bg: rgba(30, 30, 32, 0.5);
   --glass-dark-border: rgba(255, 255, 255, 0.08);
-  
+
   --nav-h: 80px;
   --font-body: 'Inter', sans-serif;
   --font-head: 'Outfit', sans-serif;
@@ -36,7 +38,10 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-head);
   margin: 0;
 }
@@ -122,13 +127,23 @@ h1, h2, h3, h4 {
 }
 
 @keyframes drift {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 80px); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(50px, 80px);
+  }
 }
 
 @keyframes drift2 {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-60px, -40px); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-60px, -40px);
+  }
 }
 
 .hero-content {
@@ -199,7 +214,7 @@ h1, h2, h3, h4 {
   direction: rtl;
 }
 
-.feature-split.reverse > * {
+.feature-split.reverse>* {
   direction: ltr;
 }
 
@@ -255,9 +270,23 @@ h1, h2, h3, h4 {
   padding: 20px;
 }
 
-.widget-1 { top: 10%; left: 0; width: 200px; }
-.widget-2 { bottom: 20%; right: 0; width: 220px; }
-.widget-3 { top: 40%; right: -20px; width: 180px; }
+.widget-1 {
+  top: 10%;
+  left: 0;
+  width: 200px;
+}
+
+.widget-2 {
+  bottom: 20%;
+  right: 0;
+  width: 220px;
+}
+
+.widget-3 {
+  top: 40%;
+  right: -20px;
+  width: 180px;
+}
 
 /* AI Copilot Section */
 .ai-section {
@@ -281,7 +310,8 @@ h1, h2, h3, h4 {
 
 /* How It Works Horizontal */
 .horizontal-scroll-container {
-  height: 300vh; /* For scroll pinning */
+  height: 300vh;
+  /* For scroll pinning */
 }
 
 .horizontal-track {
@@ -326,4 +356,735 @@ h1, h2, h3, h4 {
   transform: translateY(-10px);
   border-color: rgba(var(--primary-rgb), 0.5);
   box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.15);
+}
+
+/* =========================================================
+   NEW KINETIC HTML FIXES & STYLING
+   ========================================================= */
+
+/* --- HERO SECTION --- */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 24px;
+}
+
+.hero-bg-ring {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(205, 247, 139, 0.2);
+  border-radius: 50%;
+  filter: blur(2px);
+  z-index: 0;
+}
+
+.hero-bg-dots {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(#cdf78b 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.hero-left {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title-new {
+  font-size: clamp(3.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.text-highlight-green {
+  color: #cdf78b;
+  /* Primary brand color */
+}
+
+.hero-desc-new {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.btn-coming-soon-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #111;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.built-by-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.badge-subtitle {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* =============================================
+   PREMIUM APPLE-STYLE PHONE MOCKUP
+   ============================================= */
+
+.phone-mockup-new {
+  width: 260px;
+  height: 540px;
+  position: absolute;
+  flex-shrink: 0;
+
+  /* 12px padding = visible frame band */
+  border-radius: 54px;
+  padding: 12px;
+
+  /* Space Black/charcoal titanium — premium, clean against light backgrounds */
+  background: linear-gradient(
+    160deg,
+    #3a3a3c 0%,
+    #1c1c1e 25%,
+    #2c2c2e 50%,
+    #1a1a1c 75%,
+    #2e2e30 100%
+  );
+
+  /* Cinematic shadow */
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.4),
+    0 4px 12px rgba(0,0,0,0.15),
+    0 20px 50px -8px rgba(0,0,0,0.30),
+    0 55px 110px -20px rgba(0,0,0,0.35),
+    inset 0 1.5px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+
+  overflow: hidden;
+}
+
+/* Inner black screen bezel */
+.phone-screen-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 42px;
+  background: #000;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Screen image fills the screen area */
+.phone-screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  z-index: 1;
+  display: block;
+}
+
+/* Sticky scrollytelling screen images need same treatment */
+.sticky-screen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Dynamic Island — the authentic black pill */
+.phone-speaker {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95px;
+  height: 32px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 20;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.8);
+}
+
+/* No fake glare — Apple doesn't use it */
+.apple-glass-glare {
+  display: none;
+}
+
+/* --- PHONE POSITIONS IN HERO --- */
+.hero-right {
+  position: relative;
+  height: 640px;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-mockup-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Left phone: slightly behind, tilted */
+.phone-left-new {
+  left: calc(50% - 290px);
+  top: 40px;
+  transform: rotateY(12deg) rotateX(3deg) scale(0.95);
+  z-index: 1;
+  filter: drop-shadow(-12px 20px 40px rgba(0,0,0,0.25));
+}
+
+/* Right phone: front and center, slight counter-tilt */
+.phone-right-new {
+  left: calc(50% + 30px);
+  top: 80px;
+  transform: rotateY(-8deg) rotateX(3deg);
+  z-index: 2;
+  filter: drop-shadow(12px 24px 40px rgba(0,0,0,0.22));
+}
+
+/* Premium scrollytelling sticky phone */
+.phone-mockup-super {
+  position: relative;
+  /* Slightly larger — makes it look like the main feature phone */
+  transform: scale(1.1);
+  /* Reset position for sticky phone (it's positioned differently) */
+  left: auto;
+  top: auto;
+}
+
+/* --- SCROLLYTELLING (Vertical Features) --- */
+.scrollytelling-section {
+  position: relative;
+  background: transparent;
+  /* Must be taller than viewport for scroll() API to track progress */
+  min-height: 300vh;
+}
+
+.scrollytelling-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.scroll-text-container {
+  padding-bottom: 20vh;
+}
+
+/* Dark mode class toggled by scroll JS */
+.dark-mode-text .feature-text h2 {
+  color: #ffffff;
+}
+
+.dark-mode-text .feature-text p {
+  color: #a1a1a6;
+}
+
+.dark-mode-text .text-highlight {
+  color: #cdf78b;
+}
+
+.scroll-text-block {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.feature-text h2 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  transition: color 0.5s ease;
+}
+
+.feature-text p {
+  font-size: 1.35rem;
+  color: #666;
+  line-height: 1.65;
+  transition: color 0.5s ease;
+}
+
+/* AI Orb */
+.ai-orb {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(205, 247, 139, 0.5) 0%, rgba(205, 247, 139, 0) 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  z-index: 1;
+  top: 50%;
+  left: 0%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Phone sticky container */
+.sticky-phone-container {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-mockup-super {
+  position: relative;
+  margin: 0;
+  transform: scale(1.1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 0 10px #f0f0f0;
+}
+
+/* --- SCROLLYTELLING (How It Works) --- */
+.hw-scrollytelling-section {
+  position: relative;
+  background: #FCFBF9;
+  height: 300vh;
+  /* Scroll track height */
+  padding: 80px 0 0 0;
+}
+
+/* Title glued at top using sticky */
+.hw-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #FCFBF9;
+  padding: 36px 48px 20px;
+}
+
+.hw-section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+  text-align: left;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sticky center fills remaining height */
+.hw-sticky-center {
+  height: calc(100% - 96px);
+}
+
+.hw-sticky-content {
+  position: sticky;
+  top: 100px;  /* sits below sticky header */
+  height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  background: transparent;
+}
+
+/* Card container — clips the corner decorations on the images */
+.hw-full-card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Border-radius clips black corner art from the mockup images */
+  border-radius: 20px;
+  overflow: hidden;
+  background: #FCFBF9;
+}
+
+/* Pure opacity crossfade — NO translate/scale → feels like card swapped in place */
+.hw-full-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  /* Smooth crossfade only */
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: none !important;
+  border-radius: 0;
+}
+
+.hw-full-img.active {
+  opacity: 1;
+}
+
+.hw-full-img.previous {
+  opacity: 0;
+}
+
+/* --- TRUST SECTION --- */
+.trust-section {
+  padding: 100px 24px;
+  background: #FCFBF9;
+  text-align: center;
+}
+
+.trust-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+
+.trust-title .highlight {
+  color: #cdf78b;
+}
+
+.trust-grid-new {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  /* Reduced gap to fit all 5 in one row */
+  max-width: 1250px;
+  /* Expanded slightly to prevent wrapping */
+  margin: 0 auto;
+}
+
+.trust-col {
+  box-sizing: border-box;
+  /* Include padding in width calculation */
+  background: #fff;
+  padding: 40px 24px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trust-col:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.trust-icon-wrap {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px auto;
+  color: #cdf78b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+
+.trust-col h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.trust-col p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* --- BOTTOM MERGED CTA & FOOTER --- */
+.bottom-merged-kinetic {
+  position: relative;
+  width: 100%;
+  background: #FCFBF9;
+  padding: 60px 0 0 0;
+}
+
+.cta-glass-card {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 40px 40px 0 0;
+  /* Only top corners rounded */
+  background: #111;
+  color: #fff;
+  border: none;
+  overflow: hidden;
+}
+
+.cta-bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.cta-inner-container {
+  position: relative;
+  z-index: 2;
+  padding: 60px 80px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  /* Left column slightly wider */
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 40px;
+  max-width: 1000px;
+  /* Constrain width to bring columns closer */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-heading {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.text-highlight-lime {
+  color: #cdf78b;
+}
+
+.download-btn-wrapper {
+  margin-bottom: 16px;
+}
+
+.btn-download-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  color: #111;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.btn-download-pill:hover {
+  transform: scale(1.05);
+}
+
+.cta-subtext {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.cta-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cta-brand-name {
+  font-size: 2rem;
+  font-family: var(--font-head);
+  font-weight: 800;
+}
+
+.cta-brand-desc {
+  color: #bbb;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.cta-social-row {
+  display: flex;
+  gap: 16px;
+}
+
+.cta-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.cta-social-icon:hover {
+  background: #cdf78b;
+  color: #111;
+}
+
+/* Integrated Footer */
+.footer-new-integrated {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 28px;
+  text-align: center;
+}
+
+.footer-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Fixolutions centered */
+}
+
+.footer-huge-title {
+  font-family: var(--font-head);
+  font-size: clamp(3.5rem, 11vw, 10.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 24px 0 0 0;
+  user-select: none;
+  text-align: center;
+}
+
+.footer-liftoff-text {
+  color: #cdf78b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  text-align: right;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-bottom-logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.footer-bottom-links {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 992px) {
+
+  .hero-split,
+  .scrollytelling-grid,
+  .cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    height: 500px;
+    margin-top: 40px;
+  }
+
+  .sticky-phone-container {
+    height: 50vh;
+    top: 10vh;
+  }
+
+  .scroll-text-block {
+    height: 60vh;
+  }
+
+  .hw-sticky-center {
+    height: auto;
+  }
+
+  .hw-sticky-content {
+    position: static;
+    height: auto;
+  }
+
+  .hw-full-card-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+  }
+
+  .hw-full-img {
+    position: static;
+    opacity: 1 !important;
+  }
+}
+
+/* --- ANIMATION SPECIFIC CLASSES --- */
+.dark-mode-text {
+  color: #fff !important;
+}
+
+.dark-mode-text h2 {
+  color: #fff !important;
+}
+
+.dark-mode-text p {
+  color: #bbb !important;
 }
