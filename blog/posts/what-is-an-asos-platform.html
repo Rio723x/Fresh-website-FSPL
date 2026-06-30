@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is an ASOS Platform? After-Sales & Post-Sales Service System</title>
+  <meta name="description" content="An ASOS (After-Sales Operating System) platform coordinates a brand's entire after-sales and post-sales service into one connected runtime. Learn how Fixolutions transforms appliance and consumer electronics support." />
+  <meta name="keywords" content="ASOS platform, after-sales service, post-sales service, after-sales operations, post-sales support, service intelligence, Fixolutions" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://getfixolutions.com/blog/posts/what-is-an-asos-platform" />
+  <meta property="og:title" content="What is an ASOS Platform? After-Sales & Post-Sales Service System" />
+  <meta property="og:description" content="An ASOS (After-Sales Operating System) platform coordinates a brand's entire after-sales operations and post-sales service under one connected system." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getfixolutions.com/blog/posts/what-is-an-asos-platform" />
+  <meta property="og:image" content="https://getfixolutions.com/ASOS.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What is an ASOS Platform? After-Sales & Post-Sales Service System" />
+  <meta name="twitter:description" content="An ASOS platform runs a brand's entire after-sales service as one connected system." />
+  <meta name="twitter:image" content="https://getfixolutions.com/ASOS.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://getfixolutions.com/blog/posts/what-is-an-asos-platform"
+    },
+    "headline": "What is an ASOS Platform? The After-Sales & Post-Sales Service System",
+    "description": "An ASOS (After-Sales Operating System) platform coordinates a brand's entire after-sales service and post-sales support into one connected runtime, eliminating silos.",
+    "image": "https://getfixolutions.com/ASOS.png",
+    "author": {
+      "@type": "Organization",
+      "name": "Fixolutions",
+      "url": "https://getfixolutions.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fixolutions",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://getfixolutions.com/logo.png"
+      }
+    },
+    "datePublished": "2026-06-27T08:00:00+05:30",
+    "dateModified": "2026-06-30T12:00:00+05:30",
+    "keywords": "ASOS platform, after-sales service, post-sales service, after-sales operations, consumer electronics service, service intelligence, appliance warranty software"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #cdf78b;
+      --primary-hover: #bde27a;
+      --primary-rgb: 205, 247, 139;
+      --bg-dark: #070c14;
+      --bg-light: #FAF5EF;
+      --border-light: #e2e8f0;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --nav-h: 80px;
+      --font-body: 'Inter', sans-serif;
+      --font-head: 'Outfit', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg-light); color: var(--text-primary); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;gap:10px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+    .btn-primary{background:var(--primary);color:#000}
+    .btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px)}
+
+    /* NAV */
+    .header{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+    .header.scrolled{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:max-content;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-radius:999px;height:48px;box-shadow:0 6px 24px rgba(0,0,0,0.15)}
+    .header.scrolled .nav-container{padding:0 28px;gap:48px}
+    .header .btn-primary{padding:9px 22px;border-radius:999px;font-size:0.88rem}
+    .header.footer-reached{transform:translateY(calc(-100% - 30px));pointer-events:none}
+    .header.scrolled.footer-reached{transform:translate(-50%,calc(-100% - 30px))}
+    
+    /* Default (Unscrolled) state: visible dark text on light bg */
+    .header .logo-text{font-family:var(--font-head);font-weight:800;font-size:1.4rem;color:#111827;line-height:1;transition:color 0.3s ease}
+    .header .nav-link{font-weight:500;font-size:0.95rem;color:rgba(17, 24, 39, 0.78);transition:color 0.25s ease}
+    .header .nav-link:hover{color:#000}
+    .header .nav-link-blog{color:#4E8A2E !important;font-weight:600 !important;border-bottom:2px solid #4E8A2E;padding-bottom:2px}
+    .header .mobile-menu-btn{display:none;background:transparent;border:none;color:#111827;font-size:1.8rem;cursor:pointer;position:relative;z-index:100000;transition:color 0.3s ease}
+
+    /* Scrolled state: dark glassmorphic backdrop for contrast */
+    .header.scrolled.over-light-section,.header.scrolled.over-dark-section{background:rgba(7, 12, 20, 0.85) !important;border:1px solid rgba(255,255,255,0.12) !important;box-shadow:0 10px 30px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.25) !important}
+    .header.scrolled .nav-link{color:rgba(255,255,255,0.78) !important}
+    .header.scrolled .nav-link:hover{color:#fff !important}
+    .header.scrolled .logo-text{color:#fff !important}
+    .header.scrolled .mobile-menu-btn{color:#fff !important}
+    .header.scrolled .nav-link-blog{color:var(--primary) !important;border-bottom:2px solid var(--primary) !important}
+
+    .nav-container{display:flex;align-items:center;justify-content:space-between;height:100%}
+    .logo{display:flex;align-items:center;gap:12px}
+    .nav-menu{display:flex;align-items:center;gap:36px;list-style:none}
+    .nav-item-dropdown{position:relative}
+    .nav-item-dropdown > .nav-link{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+    .nav-chevron{transition:transform 0.25s ease}
+    .nav-item-dropdown:hover .nav-chevron{transform:rotate(180deg)}
+    .nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:264px;background:#fff;border:1px solid var(--border-light);border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,0.14);padding:8px;opacity:0;visibility:hidden;transition:all 0.25s ease;z-index:1100}
+    .nav-item-dropdown:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(10px)}
+    .nav-dropdown::before{content:'';position:absolute;bottom:100%;left:0;right:0;height:14px}
+    .nav-dropdown-head{font-size:0.7rem;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;color:var(--text-secondary);padding:8px 10px 10px}
+    .nav-dropdown-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:9px;font-size:0.88rem;font-weight:600;color:var(--text-primary);transition:background 0.2s ease}
+    a.nav-dropdown-item.active:hover{background:rgba(205,247,139,0.10)}
+    .nav-dropdown-item.disabled{color:var(--text-secondary);opacity:0.65;cursor:default}
+    .industry-tag{font-size:0.62rem;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;color:var(--text-secondary);flex-shrink:0}
+
+    /* HERO */
+    .article-hero { padding-top: 140px; padding-bottom: 56px; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: start; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; color: #6b7280; text-decoration: none; margin-bottom: 28px; transition: color 0.2s ease; }
+    .back-link svg { stroke: #7dc524; transition: transform 0.2s ease; }
+    .back-link:hover { color: #111827; }
+    .back-link:hover svg { transform: translateX(-3px); }
+    
+    .meta-row { display: flex; align-items: center; margin-bottom: 20px; }
+    .meta-date, .meta-read { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #6b7280; }
+    .meta-sep { width: 4px; height: 4px; border-radius: 50%; background: #7dc524; margin: 0 8px; }
+    
+    .article-title { font-family: var(--font-head); font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: #111827; margin-bottom: 20px; }
+    .article-title span { color: #7dc524; }
+    .article-subtitle { font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 36px; max-width: 580px; }
+    
+    .share-row { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 700; color: #6b7280; }
+    .share-btn { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; color: #111827; transition: all 0.25s ease; cursor: pointer; }
+    .share-btn:hover { border-color: #111827; background: rgba(0, 0, 0, 0.03); }
+
+    /* TOC */
+    .toc-container { background: transparent; padding-top: 10px; }
+    .toc-title { font-family: var(--font-head); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: #9ca3af; text-transform: uppercase; margin-bottom: 18px; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .toc-link { font-size: 0.88rem; font-weight: 600; color: #4b5563; display: flex; align-items: flex-start; gap: 8px; padding-left: 12px; border-left: 2px solid rgba(0, 0, 0, 0.06); transition: all 0.25s ease; }
+    .toc-link.active { color: #111827; border-left-color: #7dc524; font-weight: 700; }
+    .toc-link:hover:not(.active) { color: #111827; border-left-color: #111827; }
+
+    /* BODY & PROSE */
+    .article-body-wrap { padding-top: 72px; padding-bottom: 120px; }
+    .article-prose { max-width: 1000px; margin: 0 auto; }
+    .article-prose section { scroll-margin-top: 100px; margin-bottom: 72px; }
+    .section-heading { font-family: var(--font-head); font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.02em; color: #111827; margin-bottom: 24px; }
+    .article-prose p { font-size: 1.05rem; line-height: 1.8; color: #374151; margin-bottom: 24px; }
+    .article-prose p strong { color: #111827; font-weight: 700; }
+
+    /* SECTION 2: FLOWCHART */
+    .process-flow { display: flex; gap: 12px; margin: 40px 0; overflow-x: auto; padding-bottom: 20px; scrollbar-width: thin; }
+    .flow-step { flex: 1; min-width: 135px; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 12px; padding: 20px 14px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.015); }
+    .step-icon-wrap { width: 44px; height: 44px; border-radius: 10px; background: #f4f9eb; border: 1.5px solid rgba(125, 197, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #7dc524; }
+    .step-label { font-size: 0.8rem; font-weight: 700; color: #111827; line-height: 1.25; }
+    .step-status { font-size: 0.65rem; color: #8892b0; margin-top: auto; }
+
+    /* SECTION 3: SILOS/CENTERS CARDS */
+    .disappear-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
+    .disappear-card { background: #f8faf6; border: 1.5px solid rgba(125, 197, 36, 0.12); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .card-header { display: flex; align-items: center; gap: 16px; }
+    .card-icon-wrap { width: 48px; height: 48px; border-radius: 12px; background: #ffffff; border: 1.5px solid rgba(125, 197, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #7dc524; }
+    .card-title { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; color: #111827; }
+    .card-text { font-size: 0.95rem; line-height: 1.65; color: #4b5563; }
+
+    /* CALLOUT BOXES */
+    .callout-box { background: #f4f9eb; border-left: 4px solid #7dc524; padding: 24px 32px; border-radius: 0 16px 16px 0; display: flex; align-items: center; gap: 24px; margin: 36px 0; }
+    .callout-icon-wrap { color: #7dc524; flex-shrink: 0; }
+    .callout-text { font-size: 1rem; font-weight: 600; color: #111827; line-height: 1.5; margin-bottom: 0 !important; }
+
+    /* BLOCKQUOTE */
+    .blockquote-box { background: #f4f9eb; border-left: 4px solid #7dc524; padding: 32px; border-radius: 0 16px 16px 0; display: flex; gap: 20px; align-items: flex-start; margin: 36px 0; }
+    .quote-icon { font-size: 2.5rem; color: rgba(125, 197, 36, 0.3); font-family: Georgia, serif; line-height: 1; flex-shrink: 0; margin-top: -10px; }
+    .quote-content { display: flex; flex-direction: column; gap: 10px; }
+    .quote-text { font-size: 1.05rem; font-weight: 600; color: #111827; line-height: 1.6; font-style: italic; }
+    .quote-author { font-size: 0.85rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* FINAL TAKEAWAY */
+    .takeaway-card { background: #070c14; border-radius: 16px; padding: 44px 48px; margin: 48px 0; box-shadow: 0 20px 48px rgba(0,0,0,0.15); }
+    .takeaway-text { font-size: 1.15rem; line-height: 1.6; color: #e2e8f0 !important; margin-bottom: 0 !important; }
+    .takeaway-text strong { color: #ffffff !important; }
+    .takeaway-text .highlight { color: #a3e635; font-weight: 700; }
+
+    /* BOTTOM NAV LINK */
+    .bottom-back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; color: #6b7280; text-decoration: none; margin-top: 24px; transition: color 0.2s ease; }
+    .bottom-back-link svg { stroke: #7dc524; transition: transform 0.2s ease; }
+    .bottom-back-link:hover { color: #111827; }
+    .bottom-back-link:hover svg { transform: translateX(-3px); }
+
+    /* FOOTER */
+    .blog-footer{background:var(--bg-dark);padding:80px 0 44px;position:relative;overflow:hidden}
+    .blog-footer::before{content:'';position:absolute;top:-140px;left:-220px;width:700px;height:700px;background:radial-gradient(circle,rgba(205,247,139,0.05) 0%,transparent 70%);pointer-events:none}
+    
+    .footer-title-container{width:fit-content;margin:0 auto 48px;display:flex;flex-direction:column;align-items:flex-end;position:relative}
+    .footer-huge{font-family:var(--font-head);font-size:clamp(4rem,12vw,9.5rem);font-weight:900;letter-spacing:-0.04em;color:#ffffff;text-align:center;line-height:0.9;margin:0;user-select:none}
+    .footer-liftoff-text{font-family:var(--font-head);font-size:clamp(1.15rem,1.6vw,1.45rem);font-weight:700;color:#ffffff;line-height:1.2;text-align:right;margin-top:8px;margin-bottom:0;letter-spacing:0.05em}
+    
+    .footer-bottom-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.06);flex-wrap:wrap}
+    .footer-logo{display:flex;align-items:center;gap:12px;font-family:var(--font-head);font-size:1.15rem;font-weight:800;color:#fff}
+    .footer-links{display:flex;gap:28px;list-style:none}
+    .footer-links a{font-size:0.82rem;color:rgba(255,255,255,0.38);transition:color 0.2s ease}
+    .footer-links a:hover{color:rgba(255,255,255,0.85)}
+    .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.26)}
+
+    @media (max-width:900px){
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .disappear-cards { grid-template-columns: 1fr; }
+      .callout-box { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      .takeaway-card { flex-direction: column; align-items: flex-start; gap: 20px; padding: 32px; }
+      .footer-bottom-row{flex-direction:column;align-items:flex-start;gap:20px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="header" id="siteNav">
+  <div class="container nav-container">
+    <a href="/" class="logo">
+      <svg width="32" height="34" viewBox="0 0 490 509" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="115" y1="108" x2="264" y2="235" stroke="#4E8A2E" stroke-width="3"/>
+        <line x1="326" y1="80" x2="264" y2="235" stroke="#4E8A2E" stroke-width="3"/>
+        <line x1="264" y1="235" x2="180" y2="380" stroke="#4E8A2E" stroke-width="3"/>
+        <circle cx="115" cy="108" r="48" fill="#1F2B22" stroke="#6FC944" stroke-width="4"/>
+        <circle cx="115" cy="108" r="14" fill="#6FC944"/>
+        <circle cx="326" cy="80" r="38" fill="#6FC944" stroke="#1F2B22" stroke-width="3"/>
+        <circle cx="326" cy="80" r="13" fill="#1F2B22"/>
+        <circle cx="264" cy="235" r="22" fill="#1F2B22" stroke="#6FC944" stroke-width="3"/>
+        <circle cx="264" cy="235" r="7" fill="#6FC944"/>
+        <circle cx="180" cy="380" r="60" fill="#6FC944" stroke="#1F2B22" stroke-width="4"/>
+        <path d="M155 380 L175 400 L210 360" fill="none" stroke="#1F2B22" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">Fixolutions</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="/#home" class="nav-link">Platform</a></li>
+      <li class="nav-item-dropdown">
+        <a href="/#products" class="nav-link">Industries
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="nav-chevron"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown">
+          <div class="nav-dropdown-head">Built for after-sales across every industry</div>
+          <a href="/#products" class="nav-dropdown-item active"><span>Home Appliances &amp; Electronics</span><span class="industry-tag live">Live now</span></a>
+          <span class="nav-dropdown-item disabled"><span>Solar Systems</span><span class="industry-tag">Soon</span></span>
+          <span class="nav-dropdown-item disabled"><span>HVAC &amp; Cooling</span><span class="industry-tag">Soon</span></span>
+          <span class="nav-dropdown-item disabled"><span>Automotive</span><span class="industry-tag">Soon</span></span>
+          <span class="nav-dropdown-item disabled"><span>Banking</span><span class="industry-tag">Soon</span></span>
+        </div>
+      </li>
+      <li><a href="/#products" class="nav-link">Products</a></li>
+      <li><a href="/kinetic" class="nav-link">Kinetic</a></li>
+      <li><a href="/team" class="nav-link">Team</a></li>
+      <li><a href="/blog" class="nav-link nav-link-blog">Blogs</a></li>
+    </ul>
+    <div>
+      <a href="/#contact" class="btn btn-primary">Book a Demo</a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="container">
+    <a href="/blog" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Blog
+    </a>
+
+    <div class="hero-grid">
+      <!-- Left Column: Title Block -->
+      <div>
+        <div class="meta-row">
+          <span class="meta-date">Jun 27, 2026</span><span class="meta-sep"></span>
+          <span class="meta-read">10 min read</span>
+        </div>
+        <h1 class="article-title">What is an<br><span>ASOS Platform?</span></h1>
+        <p class="article-subtitle">The operating system layer that runs a brand's entire after-sales service as one connected system.</p>
+        <div class="share-row">
+          <span>Share this article:</span>
+          <div class="share-btn" title="Share on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div class="share-btn" title="Share on Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </div>
+          <div class="share-btn" title="Copy Link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: TOC Sidebar -->
+      <aside class="toc-container">
+        <div class="toc-title">Table of Contents</div>
+        <ul class="toc-list">
+          <li><a class="toc-link active" href="#sec1">What an ASOS platform actually is</a></li>
+          <li><a class="toc-link" href="#sec2">The end-to-end after-sales lifecycle</a></li>
+          <li><a class="toc-link" href="#sec3">What disappears with an ASOS</a></li>
+          <li><a class="toc-link" href="#sec4">Why it matters most in consumer electronics</a></li>
+          <li><a class="toc-link" href="#sec5">The revenue impact: AMC &amp; EWS renewals</a></li>
+          <li><a class="toc-link" href="#sec6">The timing: Urban Company's move</a></li>
+          <li><a class="toc-link" href="#sec7">The signal for OEMs</a></li>
+          <li><a class="toc-link" href="#sec8">Final takeaway</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<div class="article-body-wrap">
+  <div class="container">
+    <article class="article-prose">
+      
+      <!-- Section 1 -->
+      <section id="sec1">
+        <h2 class="section-heading">What an ASOS platform actually is</h2>
+        <p>In consumer electronics, good after-sales service is quietly becoming one of the strongest selling propositions a brand has, not just a cost center to manage.</p>
+        <p>An <strong>ASOS platform</strong> is the operating layer that runs a brand's entire after-sales operation as one connected system, rather than the usual patchwork of call centers, spreadsheets, WhatsApp groups, and disconnected technician apps.</p>
+        <p>The analogy is to an operating system: just as an OS coordinates hardware, processes, and applications under one runtime, an <strong>ASOS</strong> coordinates everything that happens <strong>after a product is sold</strong>.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="sec2">
+        <h2 class="section-heading">The end-to-end after-sales lifecycle</h2>
+        <p>In practice that spans the full lifecycle of a service event.</p>
+        
+        <div class="process-flow">
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="step-label">Customer</div>
+            <div class="step-status">Request Raised</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <div class="step-label">System Triages</div>
+            <div class="step-status">and Routes</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="step-label">Technician</div>
+            <div class="step-status">Dispatched</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="step-label">Job Executed</div>
+            <div class="step-status">and Verified</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="step-label">Warranty / AMC</div>
+            <div class="step-status">Status Checked</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div class="step-label">Parts &amp; Inventory</div>
+            <div class="step-status">Move</div>
+          </div>
+          <div class="flow-step">
+            <div class="step-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="step-label">Brand sees</div>
+            <div class="step-status">Structured Data</div>
+          </div>
+        </div>
+        
+        <p>The gain is as much about what disappears as what gets added.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="sec3">
+        <h2 class="section-heading">What disappears with an ASOS</h2>
+        
+        <div class="disappear-cards">
+          <div class="disappear-card">
+            <div class="card-header">
+              <div class="card-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+              </div>
+              <h3 class="card-title">1. Data silos</h3>
+            </div>
+            <p class="card-text">Instead of customer history sitting in one tool, technician notes in another, and parts and warranty data in a third, it all lives on one record that everyone works off.</p>
+          </div>
+          <div class="disappear-card">
+            <div class="card-header">
+              <div class="card-icon-wrap">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="card-title">2. Dependence on third-party service centers</h3>
+            </div>
+            <p class="card-text">That add time at every handoff while owning none of the outcome. When the brand runs the flow directly with its own team, accountability sits with the brand instead of a routing chain nobody fully controls.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="sec4">
+        <h2 class="section-heading">Why it matters most in consumer electronics</h2>
+        <p>This matters most in consumer electronics, where the larger goods carry the slowest service. An AC or a refrigerator complaint usually means an on-site visit, the right spare part in hand, and often a second trip when the diagnosis or the part is wrong. Each handoff between the call center, the technician, and the parts desk adds delay.</p>
+        
+        <div class="callout-box">
+          <div class="callout-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="8" rx="2"/><line x1="6" y1="7" x2="6" y2="7"/><line x1="10" y1="7" x2="14" y2="7"/><rect x="6" y="14" width="12" height="8" rx="1"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </div>
+          <p class="callout-text">An ASOS collapses those handoffs into one flow, so the brand routes the right technician with the right part and context on the first visit instead of the third.</p>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section id="sec5">
+        <h2 class="section-heading">The revenue impact: AMC &amp; EWS renewals</h2>
+        <p>It also shows up directly in revenue. When every service event is structured data, the brand knows exactly whose warranty or AMC is about to lapse and can prompt the renewal at the right moment instead of letting it slip.</p>
+        
+        <div class="callout-box">
+          <div class="callout-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/><path d="M9 8h6M9 12h6M9 8c3 0 4.5 1.5 4.5 4S12 16 9 16M9 16h6M11.5 16l4.5 5"/></svg>
+          </div>
+          <p class="callout-text">A connected after-sales layer turns AMC and EWS renewals from a leaky afterthought into a tracked, recurring revenue line.</p>
+        </div>
+      </section>
+
+      <!-- Section 6 -->
+      <section id="sec6">
+        <h2 class="section-heading">The timing: Urban Company's move</h2>
+        <p>Urban Company entered consumer durables in October 2023 under its own brand, Native, starting with water purifiers and later adding smart door locks. It is now reported to be planning an air-conditioner-cum-air-purifier ahead of Diwali this year, as it expands its consumer durables vertical, (Magzter) though the company has not officially confirmed the launch.</p>
+        
+        <div class="blockquote-box">
+          <div class="quote-icon">“</div>
+          <div class="quote-content">
+            <p class="quote-text">They clearly treat strong service as a selling proposition in itself: their Native products are positioned as integrated and backed by strong service, on the view that even when servicing is rare, consumers want the assurance that help is available quickly if needed.</p>
+            <span class="quote-author">– Forbes India</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7 -->
+      <section id="sec7">
+        <h2 class="section-heading">The signal for OEMs</h2>
+        <p>The same platform that already sits inside millions of homes for service is now selling appliances of its own. A brand that does not control its own after-sales slowly hands the customer relationship to whoever shows up to fix the product.</p>
+        
+        <div class="callout-box">
+          <div class="callout-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <p class="callout-text">An OEM that already runs its after-sales as one connected system keeps that relationship, and walks into a far more competitive market with the service moat already built, instead of scrambling to build it after Diwali.</p>
+        </div>
+      </section>
+
+      <!-- Section 8 -->
+      <section id="sec8">
+        <div class="takeaway-card">
+          <p class="takeaway-text"><strong>Final takeaway:</strong> ASOS is not just a support tool. It is the operating <span class="highlight">system</span> for after-sales. It drives <span class="highlight">better service, stronger loyalty,</span> and a <span class="highlight">more profitable business.</span></p>
+        </div>
+      </section>
+
+      <a href="/blog" class="bottom-back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to all articles
+      </a>
+
+    </article>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="blog-footer" id="blogFooter">
+  <div class="container">
+    <div class="footer-title-container">
+      <div class="footer-huge">Fixolutions</div>
+      <div class="footer-liftoff-text">Experience liftoff</div>
+    </div>
+    <div class="footer-bottom-row">
+      <div class="footer-logo">
+        <svg width="32" height="34" viewBox="0 0 490 509" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="115" y1="108" x2="264" y2="235" stroke="#4E8A2E" stroke-width="3"/>
+          <line x1="326" y1="80" x2="264" y2="235" stroke="#4E8A2E" stroke-width="3"/>
+          <line x1="264" y1="235" x2="180" y2="380" stroke="#4E8A2E" stroke-width="3"/>
+          <circle cx="115" cy="108" r="48" fill="#1F2B22" stroke="#6FC944" stroke-width="4"/>
+          <circle cx="115" cy="108" r="14" fill="#6FC944"/>
+          <circle cx="326" cy="80" r="38" fill="#6FC944" stroke="#1F2B22" stroke-width="3"/>
+          <circle cx="326" cy="80" r="13" fill="#1F2B22"/>
+          <circle cx="264" cy="235" r="22" fill="#1F2B22" stroke="#6FC944" stroke-width="3"/>
+          <circle cx="264" cy="235" r="7" fill="#6FC944"/>
+          <circle cx="180" cy="380" r="60" fill="#6FC944" stroke="#1F2B22" stroke-width="4"/>
+          <path d="M155 380 L175 400 L210 360" fill="none" stroke="#1F2B22" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Fixolutions
+      </div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#products">Platform</a></li>
+        <li><a href="/kinetic">Kinetic</a></li>
+        <li><a href="/team">Team</a></li>
+        <li><a href="/blog">Blogs</a></li>
+      </ul>
+      <span class="footer-copy">&copy; 2026 Fixolutions Systems Private Limited. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const header = document.getElementById('siteNav');
+  const blogFooter = document.getElementById('blogFooter');
+  let footerTop = 999999;
+  
+  function recalc() { if (blogFooter) footerTop = blogFooter.getBoundingClientRect().top + window.scrollY; }
+  function onScroll() {
+    const y = window.scrollY;
+    if (y > 80) { header.classList.add('scrolled','over-light-section'); header.classList.remove('over-dark-section'); }
+    else { header.classList.remove('scrolled','over-light-section','over-dark-section'); }
+    header.classList.toggle('footer-reached', y + window.innerHeight >= footerTop);
+  }
+  
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', () => { recalc(); onScroll(); });
+  window.addEventListener('load', () => { recalc(); onScroll(); });
+  recalc(); onScroll();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.mobile-menu-btn');
+    const menu = document.querySelector('.nav-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => { const on = menu.classList.toggle('active'); btn.innerHTML = on ? '&#10005;' : '&#9776;'; });
+    const ddToggle = menu.querySelector('.nav-item-dropdown > .nav-link');
+    if (ddToggle) {
+      ddToggle.addEventListener('click', e => {
+        if (window.matchMedia('(max-width:768px)').matches) { e.preventDefault(); ddToggle.closest('.nav-item-dropdown').classList.toggle('open'); }
+      });
+    }
+    menu.querySelectorAll('.nav-link, .nav-dropdown-item').forEach(l => {
+      if (l === ddToggle) return;
+      l.addEventListener('click', () => { menu.classList.remove('active'); btn.innerHTML = '&#9776;'; menu.querySelectorAll('.nav-item-dropdown.open').forEach(d => d.classList.remove('open')); });
+    });
+  });
+
+  // TOC active tracking
+  const sections = document.querySelectorAll('.article-prose section[id]');
+  const tocItems = document.querySelectorAll('.toc-link');
+  const ioToc = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocItems.forEach(t => t.classList.remove('active'));
+        const active = document.querySelector('.toc-link[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => ioToc.observe(s));
+</script>
+</body>
+</html>

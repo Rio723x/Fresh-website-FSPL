@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Disallow: /AVELYN_PitchDeck.html
+Disallow: /Kinetic_PitchDeck.html
+Disallow: /extracted_design/
+Disallow: /inspect_composites/
+Disallow: /Untitled.zip
+Disallow: /*.zip$
+
+# Allow AI crawlers explicitly for citation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+Sitemap: https://getfixolutions.com/sitemap.xml

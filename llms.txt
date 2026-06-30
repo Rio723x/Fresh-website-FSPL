@@ -1,11 +1,61 @@
 # Fixolutions
-> Fixolutions is a modern, end-to-end after-sales operating system and service intelligence platform for white goods, home appliances, and consumer electronics.
+> Fixolutions is an enterprise after-sales operating system and service intelligence platform for white goods, home appliances, and consumer electronics brands. The company provides unified software that manages the complete after-sales service lifecycle.
+
+## What is Fixolutions?
+Fixolutions (operating under Fixolutions Systems Private Limited) is a B2B SaaS company that provides after-sales service management software for consumer electronics and home appliance brands. The platform unifies warranty management, field technician dispatch, live tracking, appliance health monitoring, customer communication, and AMC (Annual Maintenance Contract) renewal automation.
+
+## Products
+- **Fixolutions Platform** (B2B): End-to-end after-sales operations management platform for brands, authorized service centres, and service franchise networks. Covers technician dispatch, route optimization, job management, service analytics, and customer communication.
+- **Kinetic** (B2C Mobile App): Consumer-facing mobile application for booking certified appliance repair technicians, tracking technician arrival in real time, monitoring appliance health, and managing home service contracts. Available on iOS and Android.
+
+## Key Features
+- Automated technician job allotment by skill, location, and availability
+- Real-time GPS technician tracking for customers
+- Appliance health dashboard with usage monitoring and predictive maintenance
+- AI-powered service copilot for issue diagnosis
+- AMC (Annual Maintenance Contract) management and renewal automation
+- Offline-first technician mobile app for low-signal areas
+- Field service analytics and KPI dashboards
+- Multi-brand, multi-product service management
+
+## Industries Served
+- White goods and home appliances (washing machines, refrigerators, air conditioners)
+- Consumer electronics
+- HVAC and cooling systems (coming soon)
+- Solar systems (coming soon)
+- Automotive (coming soon)
+
+## Target Customers
+- Consumer electronics and home appliance brands
+- Authorized service centres and franchisee networks
+- After-sales service operations managers
+- Homeowners seeking reliable appliance repair (via Kinetic app)
+
+## Company Information
+- **Full name:** Fixolutions Systems Private Limited
+- **Website:** https://getfixolutions.com
+- **Primary market:** India
+- **Founded:** 2024
+- **Type:** B2B SaaS startup
 
 ## Core Pages
-- [Home Page](/index.html): Explains the Fixolutions platform, service workflow, and our product suite.
-- [Kinetic App](/kinetic.html): Our smart home service consumer app for booking repairs, tracking technicians in real-time, and verifying service steps.
-- [Team](/team.html): Meet the builders, designers, and strategists behind Fixolutions Systems.
+- [Home](https://getfixolutions.com/): Platform overview, feature details, and how it works
+- [Kinetic App](https://getfixolutions.com/kinetic): Consumer repair booking and appliance health app
+- [Team](https://getfixolutions.com/team): Founders, engineers, and leadership team
+- [Blog](https://getfixolutions.com/blog): Field service industry insights and best practices
 
-## Resources
-- [Blog Insights](/blog/index.html): Practical strategies, industry trends, and expert insights to help run a smarter, more efficient service organization.
-- [Reducing Technician Idle Time](/blog/posts/reduce-technician-idle-time.html): 5 practical ways to reduce field service technician idle time and increase productivity.
+## Blog Content
+- [Reducing Technician Idle Time](https://getfixolutions.com/blog/posts/reduce-technician-idle-time): 5 practical strategies to reduce field technician idle time and improve first-visit fix rates
+
+## Frequently Asked Questions
+**What does Fixolutions do?**
+Fixolutions provides software for managing the complete after-sales service process — from warranty registration and job creation to technician dispatch, live tracking, service verification, and AMC renewal.
+
+**What is the Kinetic app?**
+Kinetic is a consumer mobile app by Fixolutions that allows homeowners to book certified repair technicians, track their arrival live on a map, view appliance health scores, and manage their home maintenance contracts.
+
+**What is after-sales service management software?**
+After-sales service management software is a platform that helps brands and service organisations manage technician dispatch, customer service requests, warranty claims, spare parts logistics, and field team performance — all in one system.
+
+**How is Fixolutions different from general CRM?**
+General CRM software manages sales pipelines and customer relationships. Fixolutions is purpose-built for after-sales operations: it manages field technicians, job assignments, real-time tracking, appliance-specific diagnostics, and service SLA compliance — use cases not supported by standard CRM platforms.
