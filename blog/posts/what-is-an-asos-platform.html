@@ -48,7 +48,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #cdf78b;
@@ -60,8 +60,8 @@
       --text-primary: #111827;
       --text-secondary: #4b5563;
       --nav-h: 80px;
-      --font-body: 'Inter', sans-serif;
-      --font-head: 'Outfit', sans-serif;
+      --font-body: 'Lora', Georgia, serif;
+      --font-head: 'Playfair Display', Georgia, serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -147,12 +147,8 @@
     .article-prose p { font-size: 1.05rem; line-height: 1.8; color: #374151; margin-bottom: 24px; }
     .article-prose p strong { color: #111827; font-weight: 700; }
 
-    /* SECTION 2: FLOWCHART */
-    .process-flow { display: flex; gap: 12px; margin: 40px 0; overflow-x: auto; padding-bottom: 20px; scrollbar-width: thin; }
-    .flow-step { flex: 1; min-width: 135px; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 12px; padding: 20px 14px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.015); }
-    .step-icon-wrap { width: 44px; height: 44px; border-radius: 10px; background: #f4f9eb; border: 1.5px solid rgba(125, 197, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #7dc524; font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; }
-    .step-label { font-size: 0.8rem; font-weight: 700; color: #111827; line-height: 1.25; }
-    .step-status { font-size: 0.65rem; color: #8892b0; margin-top: auto; }
+    /* SECTION 2: WORKFLOW LIST */
+    .workflow-list p strong { color: #7dc524 !important; font-family: var(--font-head); font-weight: 700; }
 
     /* SECTION 3: SILOS/CENTERS CARDS */
     .disappear-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0; }
