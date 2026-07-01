@@ -23,14 +23,15 @@
   --glass-dark-border: rgba(255, 255, 255, 0.08);
 
   --nav-h: 80px;
-  --font-body: 'Inter', sans-serif;
-  --font-head: 'Outfit', sans-serif;
+  --font-body: 'Oxygen', sans-serif;
+  --font-head: 'Oxygen', sans-serif;
 }
 
 body {
   background-color: var(--bg-kinetic);
   color: var(--text-primary);
   font-family: var(--font-body);
+  font-size: 17px;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -989,7 +990,7 @@ h4 {
 }
 
 .footer-huge-title {
-  font-family: var(--font-head);
+  font-family: 'Outfit', sans-serif !important;
   font-size: clamp(3.5rem, 11vw, 10.5rem);
   font-weight: 800;
   color: #ffffff;
